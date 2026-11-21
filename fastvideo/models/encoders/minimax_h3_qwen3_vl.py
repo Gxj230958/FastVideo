@@ -9,7 +9,6 @@ from typing import Any
 import torch
 import torch.nn.functional as F
 from torch import nn
-from torch.nn.attention.varlen import varlen_attn
 
 from fastvideo.configs.models.encoders.minimax_h3_qwen3_vl import MiniMaxH3Qwen3VLConfig
 from fastvideo.distributed import get_tp_world_size
@@ -468,6 +467,8 @@ class MiniMaxH3Qwen3VLVisionAttention(nn.Module):
         key = (key.float() * cos + _rotate_half(key.float()) * sin).to(key_dtype)
 
         if _can_use_vision_varlen(query, key, value):
+            from torch.nn.attention.varlen import varlen_attn
+
             hidden_states = varlen_attn(
                 query, key, value,
                 attention_metadata.cu_seqlens, attention_metadata.cu_seqlens,
