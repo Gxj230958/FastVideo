@@ -15,9 +15,9 @@ def main():
     profile = json.loads(args.profile.read_text())
     meta = profile['metadata']
     rows = [dict(r) for r in grid if 'mean_ms' in r]
-    # Reserve the 15-block student sweep and the dense 24+30 combination for validation.
+    # Reserve the 15-block student sweep and the dense 30+24 combination for validation.
     def held_out(row):
-        return row['student'] == 15 or (row['student'], row['critic']) == (24, 30)
+        return row['student'] == 15 or (row['student'], row['critic']) == (30, 24)
     for r in rows:
         r['additive_ms'] = meta['time_model_reference_ms'] + sum(
             r[role] / 30 * meta['role_step_deltas_ms'][role]['save'] for role in ('student', 'critic'))
