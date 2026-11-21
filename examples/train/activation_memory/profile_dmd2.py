@@ -52,6 +52,8 @@ def main() -> None:
     parser.add_argument('--profile')
     parser.add_argument('--calibrate-from')
     parser.add_argument('--budget-gib', type=float)
+    parser.add_argument('--trace-events', action='store_true', help='Collect CPU operator self times by role event')
+    parser.add_argument('--time-phases', action='store_true', help='Synchronize at train and backward boundaries')
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
     torch.set_num_threads(8)
@@ -133,8 +135,17 @@ def main() -> None:
         optimizers = method.get_optimizers(iteration)
         for optimizer in optimizers:
             optimizer.zero_grad(set_to_none=True)
+        timings = {}
+        def mark(name):
+            if args.time_phases:
+                torch.npu.synchronize()
+                timings[name] = time.perf_counter()
+
+        mark('start')
         losses, outputs, metrics = method.single_train_step(next(stream), iteration)
+        mark('train')
         method.backward(losses, outputs)
+        mark('backward')
         if observe is not None:
             observe('clipping')
         norms = {
@@ -159,6 +170,10 @@ def main() -> None:
             'gradient_norms': norms,
             'metrics': metrics
         }
+        mark('update')
+        if timings:
+            record['phase_ms'] = {end: 1000 * (timings[end] - timings[start])
+                                  for start, end in zip(('start', 'train', 'backward'), ('train', 'backward', 'update'))}
         del losses, outputs
         iteration += 1
         return record
@@ -193,7 +208,11 @@ def main() -> None:
         torch.npu.synchronize()
         torch.npu.reset_peak_memory_stats()
         started = time.perf_counter()
-        record = step()
+        if args.trace_events:
+            from role_profile import trace_step
+            record = trace_step(method, step)
+        else:
+            record = step()
         torch.npu.synchronize()
         record.update(step_ms=(time.perf_counter() - started) * 1000,
                       peak_allocated_bytes=torch.npu.max_memory_allocated(),

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from contextlib import contextmanager
 from typing import Any
 
 import torch
@@ -40,8 +41,6 @@ def calibrate_dmd2(method: Any, step: Callable[..., Any], template: MemoryProfil
         step()
     observed = [0] * len(events)
     phase: str | None = None
-    mode: str | None = None
-
     def transition(name: str) -> None:
         nonlocal phase
         torch.npu.synchronize()
@@ -50,6 +49,32 @@ def calibrate_dmd2(method: Any, step: Callable[..., Any], template: MemoryProfil
         phase = name
         torch.npu.reset_peak_memory_stats()
 
+    with observe_role_events(method, transition):
+        for _ in range(repetitions):
+            step(transition)
+        transition('complete')
+    reference = [
+        sum(next(choice for choice in block.choices if choice.policy == 'recompute').device_bytes[event]
+            for block in blocks) for event in range(len(events))
+    ]
+    fixed = tuple(max(0, actual - selected) for actual, selected in zip(observed, reference, strict=True))
+    return MemoryProfile(
+        events, fixed, tuple(blocks), {
+            **template.metadata,
+            'executor': 'FastVideo DMD2Method / WanModel / FSDP2',
+            'method': 'DMD2 data_latent',
+            'training_sample': training_sample,
+            'optimizer': 'AdamW with FastVideo optimizer configuration',
+            'calibration_peaks': observed,
+            'event_accounting': 'continuous pre-hook intervals including FSDP transitions',
+            'teacher_trainable': False,
+        })
+
+
+@contextmanager
+def observe_role_events(method, transition):
+    count = len(method.student.transformer.blocks)
+    mode = None
     originals, handles = [], []
 
     def instrument_predict(role: str, original: Callable[..., Any]) -> Callable[..., Any]:
@@ -99,26 +124,51 @@ def calibrate_dmd2(method: Any, step: Callable[..., Any], template: MemoryProfil
                     block.register_forward_pre_hook(before(role, 'forward', index)),
                     block.register_full_backward_pre_hook(before(role, 'backward', index))
                 ])
-    for _ in range(repetitions):
-        step(transition)
-    transition('complete')
-    for handle in handles:
-        handle.remove()
-    for model, predict, backward in originals:
-        model.predict_noise, model.backward = predict, backward
-    reference = [
-        sum(next(choice for choice in block.choices if choice.policy == 'recompute').device_bytes[event]
-            for block in blocks) for event in range(len(events))
-    ]
-    fixed = tuple(max(0, actual - selected) for actual, selected in zip(observed, reference, strict=True))
-    return MemoryProfile(
-        events, fixed, tuple(blocks), {
-            **template.metadata,
-            'executor': 'FastVideo DMD2Method / WanModel / FSDP2',
-            'method': 'DMD2 data_latent',
-            'training_sample': training_sample,
-            'optimizer': 'AdamW with FastVideo optimizer configuration',
-            'calibration_peaks': observed,
-            'event_accounting': 'continuous pre-hook intervals including FSDP transitions',
-            'teacher_trainable': False,
-        })
+    try:
+        yield
+    finally:
+        for handle in handles:
+            handle.remove()
+        for model, predict, backward in originals:
+            model.predict_noise, model.backward = predict, backward
+
+
+def trace_step(method, step):
+    """Measure stream intervals and group CPU operator self times by submission interval."""
+    from collections import Counter
+
+    markers = []
+    scope = None
+
+    def transition(name):
+        nonlocal scope
+        if scope is not None:
+            scope.__exit__(None, None, None)
+        marker = torch.npu.Event(enable_timing=True)
+        marker.record()
+        markers.append((name, marker))
+        scope = torch.profiler.record_function('role_event/' + name)
+        scope.__enter__()
+
+    with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU]) as prof:
+        with observe_role_events(method, transition):
+            transition('setup')
+            record = step(transition)
+            transition('complete')
+            scope.__exit__(None, None, None)
+            torch.npu.synchronize()
+
+    elapsed = Counter()
+    for (name, first), (_, second) in zip(markers, markers[1:]):
+        elapsed[name] += first.elapsed_time(second)
+    cpu_ops = {}
+    for op in prof.events():
+        parent = op.cpu_parent
+        while parent is not None and not parent.name.startswith('role_event/'):
+            parent = parent.cpu_parent
+        if parent is not None:
+            name = parent.name.removeprefix('role_event/')
+            cpu_ops.setdefault(name, Counter())[op.name] += op.self_cpu_time_total / 1000
+    record['stream_ms'] = dict(elapsed)
+    record['cpu_self_ms'] = cpu_ops
+    return record
