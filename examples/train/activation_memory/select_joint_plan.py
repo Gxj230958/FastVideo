@@ -8,6 +8,8 @@ from statistics import mean
 import subprocess
 import sys
 
+from layouts import uniform_indices
+
 STUDENT_COUNTS = (0, 5, 10, 15, 20, 24, 30)
 CRITIC_COUNTS = (0, 4, 8, 12, 16, 20, 24, 30)
 
@@ -16,7 +18,7 @@ def candidates(profile, budget):
     rows = []
     for student, critic in itertools.product(STUDENT_COUNTS, CRITIC_COUNTS):
         events = list(profile['fixed_device_bytes'])
-        saved = {role: {int((i + 0.5) * 30 / n) for i in range(n)}
+        saved = {role: uniform_indices(30, n)
                  for role, n in [('student', student), ('critic', critic)]}
         for block in profile['blocks']:
             index = int(block['block'].split('.')[-1])
