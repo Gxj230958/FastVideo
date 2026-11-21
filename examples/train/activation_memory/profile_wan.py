@@ -12,8 +12,8 @@ from collections.abc import Callable
 from typing import Any
 
 import torch
+
 import torch.distributed as dist
-import torch_npu
 from torch.distributed.tensor import DTensor
 
 from fastvideo.distributed import cleanup_dist_env_and_memory, maybe_init_distributed_environment_and_model_parallel
@@ -33,6 +33,7 @@ from fastvideo.train.utils.activation_memory import (
 from fastvideo.train.utils.training_config import DistributedConfig, TrainingConfig
 from fastvideo.version import __version__
 
+import device_utils
 from layouts import policy_for
 
 
@@ -47,7 +48,7 @@ def tensors(value):
 
 
 def sync() -> None:
-    torch.npu.synchronize()
+    device_utils.synchronize()
 
 
 def combine_rank_profiles(profiles: list[MemoryProfile]) -> MemoryProfile:
@@ -73,16 +74,16 @@ class TrainingStep:
 
     def __init__(self, model: WanModel, sample: dict[str, Any], seed: int) -> None:
         self.model = model
-        clean = sample['latents'].permute(0, 2, 1, 3, 4).to('npu')
+        clean = sample['latents'].permute(0, 2, 1, 3, 4).to(device_utils.device_type())
         generator = torch.Generator(device='cpu').manual_seed(seed)
-        noise = torch.randn(clean.shape, generator=generator).to('npu')
+        noise = torch.randn(clean.shape, generator=generator).to(device_utils.device_type())
         self.noisy, self.target = (clean + noise) / 2, noise - clean
         self.batch = TrainingBatch()
-        self.batch.timesteps = torch.tensor([500.], device='npu')
+        self.batch.timesteps = torch.tensor([500.], device=device_utils.device_type())
         self.batch.attn_metadata = None
         self.batch.conditional_dict = {
-            'encoder_hidden_states': sample['prompt_embeds'].to('npu', torch.bfloat16),
-            'encoder_attention_mask': torch.ones(sample['prompt_embeds'].shape[:2], device='npu'),
+            'encoder_hidden_states': sample['prompt_embeds'].to(device_utils.device_type(), torch.bfloat16),
+            'encoder_attention_mask': torch.ones(sample['prompt_embeds'].shape[:2], device=device_utils.device_type()),
         }
         self.optimizer = torch.optim.AdamW(model.transformer.parameters(), lr=1e-5, foreach=False)
 
@@ -130,7 +131,7 @@ def measure_block(args: argparse.Namespace, model: WanModel, step: TrainingStep)
         supported_attention_backends=(AttentionBackendEnum.TORCH_SDPA, ),
     )
     isolated.load_state_dict(state, assign=True)
-    isolated.to('npu')
+    isolated.to(device_utils.device_type())
     parameter_pointers = {parameter.untyped_storage().data_ptr() for parameter in isolated.parameters()}
     shared_pointers = {tensor.untyped_storage().data_ptr() for tensor in tensors(block_inputs[1:])}
     input_bytes = block_inputs[0].untyped_storage().nbytes()
@@ -140,7 +141,7 @@ def measure_block(args: argparse.Namespace, model: WanModel, step: TrainingStep)
                      for index, value in enumerate(block_inputs))
 
     def run(module: torch.nn.Module, inputs: tuple[torch.Tensor, ...]) -> torch.Tensor:
-        with torch.autocast('npu', dtype=torch.bfloat16), set_forward_context(current_timestep=step.batch.timesteps,
+        with torch.autocast(device_utils.device_type(), dtype=torch.bfloat16), set_forward_context(current_timestep=step.batch.timesteps,
                                                                               attn_metadata=None):
             return module(*inputs)
 
@@ -186,19 +187,19 @@ def measure_block(args: argparse.Namespace, model: WanModel, step: TrainingStep)
                 parameter.grad = torch.zeros_like(parameter)
             inputs = values()
             sync()
-            baseline = torch.npu.memory_allocated()
-            torch.npu.reset_peak_memory_stats()
+            baseline = device_utils.accelerator().memory_allocated()
+            device_utils.reset_peak_memory_stats()
             started = time.perf_counter()
             output = run(holder.block, inputs)
             sync()
-            forward_peak = torch.npu.max_memory_allocated() - baseline + input_bytes
-            torch.npu.reset_peak_memory_stats()
+            forward_peak = device_utils.max_memory_allocated() - baseline + input_bytes
+            device_utils.reset_peak_memory_stats()
             backward(output)
             sync()
             records.append({
                 'time_ms': (time.perf_counter() - started) * 1000,
                 'forward_peak': forward_peak,
-                'backward_peak': torch.npu.max_memory_allocated() - baseline + input_bytes
+                'backward_peak': device_utils.max_memory_allocated() - baseline + input_bytes
             })
             del inputs, output
         records = records[args.warmup:]
@@ -227,7 +228,7 @@ def measure_block(args: argparse.Namespace, model: WanModel, step: TrainingStep)
     captured.clear()
     block_inputs = ()
     gc.collect()
-    torch.npu.empty_cache()
+    device_utils.accelerator().empty_cache()
     return costs
 
 
@@ -245,9 +246,9 @@ def observe_events(args: argparse.Namespace, model: WanModel, step: TrainingStep
         nonlocal active
         sync()
         if active is not None:
-            observed[active] = max(observed[active], torch.npu.max_memory_allocated())
+            observed[active] = max(observed[active], device_utils.max_memory_allocated())
         active = event
-        torch.npu.reset_peak_memory_stats()
+        device_utils.reset_peak_memory_stats()
 
     def begin(event: int) -> Callable[..., None]:
         def hook(module: torch.nn.Module, *unused: Any) -> None:
@@ -349,7 +350,7 @@ def main() -> None:
     torch.set_num_threads(8)
     local_rank = int(os.environ.get('LOCAL_RANK', 0))
     rank, world = int(os.environ.get('RANK', 0)), int(os.environ.get('WORLD_SIZE', 1))
-    torch.npu.set_device(local_rank)
+    device_utils.set_device(local_rank)
     os.environ.update(RANK=str(rank), WORLD_SIZE=str(world), LOCAL_RANK=str(local_rank))
     maybe_init_distributed_environment_and_model_parallel(
         1, 1, distributed_init_method='env://' if world > 1 else 'tcp://127.0.0.1:29885')
@@ -405,15 +406,15 @@ def main() -> None:
             if world > 1:
                 dist.barrier()
             sync()
-            torch.npu.reset_peak_memory_stats()
+            device_utils.reset_peak_memory_stats()
             started = time.perf_counter()
             loss = step()
             sync()
             records.append({
                 'step_ms': (time.perf_counter() - started) * 1000,
                 'loss': loss,
-                'peak_allocated_bytes': torch.npu.max_memory_allocated(),
-                'peak_reserved_bytes': torch.npu.max_memory_reserved()
+                'peak_allocated_bytes': device_utils.max_memory_allocated(),
+                'peak_reserved_bytes': device_utils.max_memory_reserved()
             })
         exported = None
         if args.save_model:
@@ -468,7 +469,7 @@ def main() -> None:
                         'planning_ms': planning_ms,
                         'warmup_steps': args.warmup,
                         'torch': torch.__version__,
-                        'torch_npu': torch_npu.__version__,
+                        **device_utils.runtime_metadata(),
                     },
                     indent=2) + '\n')
     cleanup_dist_env_and_memory()

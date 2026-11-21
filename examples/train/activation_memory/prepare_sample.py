@@ -9,8 +9,10 @@ from pathlib import Path
 import cv2
 import numpy as np
 import torch
-import torch_npu
+
 from diffusers import AutoencoderKLWan
+
+import device_utils
 
 
 def main():
@@ -25,19 +27,19 @@ def main():
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
     torch.set_num_threads(8)
-    torch.npu.set_device(0)
+    device_utils.set_device(0)
     if args.text:
         from transformers import AutoTokenizer, UMT5EncoderModel
 
         sample = torch.load(args.output, map_location='cpu', weights_only=True)
         tokenizer = AutoTokenizer.from_pretrained(args.model, subfolder='tokenizer', local_files_only=True)
         encoder = UMT5EncoderModel.from_pretrained(args.model, subfolder='text_encoder',
-                                                   torch_dtype=torch.bfloat16, local_files_only=True).to('npu').eval()
+                                                   torch_dtype=torch.bfloat16, local_files_only=True).to(device_utils.device_type()).eval()
         tokens = tokenizer([args.prompt, ''], padding='max_length', max_length=512,
                            truncation=True, return_tensors='pt')
         with torch.no_grad():
-            embeddings = encoder(input_ids=tokens.input_ids.to('npu'),
-                                 attention_mask=tokens.attention_mask.to('npu')).last_hidden_state
+            embeddings = encoder(input_ids=tokens.input_ids.to(device_utils.device_type()),
+                                 attention_mask=tokens.attention_mask.to(device_utils.device_type())).last_hidden_state
         lengths = tokens.attention_mask.sum(dim=1).tolist()
         for index, length in enumerate(lengths):
             embeddings[index, length:] = 0
@@ -66,11 +68,11 @@ def main():
     capture.release()
     video = torch.from_numpy(np.stack(frames)).permute(3, 0, 1, 2).unsqueeze(0).float() / 127.5 - 1
     vae = AutoencoderKLWan.from_pretrained(args.model, subfolder='vae', torch_dtype=torch.float32,
-                                         local_files_only=True).to('npu').eval()
+                                         local_files_only=True).to(device_utils.device_type()).eval()
     with torch.no_grad():
-        latents = vae.encode(video.to('npu')).latent_dist.mode()
-        mean = torch.tensor(vae.config.latents_mean, device='npu').view(1, -1, 1, 1, 1)
-        std = torch.tensor(vae.config.latents_std, device='npu').view(1, -1, 1, 1, 1)
+        latents = vae.encode(video.to(device_utils.device_type())).latent_dist.mode()
+        mean = torch.tensor(vae.config.latents_mean, device=device_utils.device_type()).view(1, -1, 1, 1, 1)
+        std = torch.tensor(vae.config.latents_std, device=device_utils.device_type()).view(1, -1, 1, 1, 1)
         latents = (latents - mean) / std
     sample = {'latents': latents.cpu(), 'video': args.video, 'frame_indices': selected.tolist(),
               'height': args.height, 'width': args.width, 'prompt': args.prompt}

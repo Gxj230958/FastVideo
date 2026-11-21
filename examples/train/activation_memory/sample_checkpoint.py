@@ -9,8 +9,10 @@ from pathlib import Path
 import cv2
 import numpy as np
 import torch
-import torch_npu
+
 from diffusers import AutoencoderKLWan, UniPCMultistepScheduler, WanPipeline, WanTransformer3DModel
+
+import device_utils
 
 
 def main() -> None:
@@ -23,12 +25,13 @@ def main() -> None:
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
     torch.set_num_threads(8)
-    torch.npu.set_device(0)
+    device_utils.set_device(0)
     sample = torch.load(args.training_sample, map_location='cpu', weights_only=True)
     transformer = WanTransformer3DModel.from_pretrained(args.trained_transformer,
                                                         torch_dtype=torch.bfloat16,
                                                         local_files_only=True)
-    transformer.set_attention_backend('_native_npu')
+    if device_utils.device_type() == 'npu':
+        transformer.set_attention_backend('_native_npu')
     vae = AutoencoderKLWan.from_pretrained(args.model,
                                            subfolder='vae',
                                            torch_dtype=torch.float32,
@@ -38,9 +41,9 @@ def main() -> None:
                                         num_train_timesteps=1000,
                                         flow_shift=5.0)
     pipeline = WanPipeline(tokenizer=None, text_encoder=None, transformer=transformer, vae=vae,
-                           scheduler=scheduler).to('npu')
-    frames = pipeline(prompt_embeds=sample['prompt_embeds'].to('npu', torch.bfloat16),
-                      negative_prompt_embeds=sample['negative_prompt_embeds'].to('npu', torch.bfloat16),
+                           scheduler=scheduler).to(device_utils.device_type())
+    frames = pipeline(prompt_embeds=sample['prompt_embeds'].to(device_utils.device_type(), torch.bfloat16),
+                      negative_prompt_embeds=sample['negative_prompt_embeds'].to(device_utils.device_type(), torch.bfloat16),
                       height=sample['height'],
                       width=sample['width'],
                       num_frames=(sample['latents'].shape[2] - 1) * 4 + 1,
@@ -72,7 +75,7 @@ def main() -> None:
         'height': sample['height'],
         'width': sample['width'],
         'pixel_std': float(frames.std()),
-        'torch_npu': torch_npu.__version__
+        **device_utils.runtime_metadata()
     }
     Path(args.output).with_suffix('.json').write_text(json.dumps(metadata, indent=2) + '\n')
     print(json.dumps(metadata))

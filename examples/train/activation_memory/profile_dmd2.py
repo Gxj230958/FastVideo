@@ -12,8 +12,6 @@ from collections.abc import Callable
 from typing import Any
 
 import torch
-import torch_npu
-
 from fastvideo.distributed import cleanup_dist_env_and_memory, maybe_init_distributed_environment_and_model_parallel
 from fastvideo.models.wan.pipeline_config import WanT2V480PConfig
 from fastvideo.train.utils.builder import build_from_config
@@ -29,7 +27,8 @@ from fastvideo.train.utils.training_config import (
     TrainingLoopConfig,
 )
 
-from profile_wan import policy_for
+import device_utils
+from layouts import policy_for
 from measurements import gather_step_records
 
 
@@ -59,7 +58,7 @@ def main() -> None:
     torch.set_num_threads(8)
     local_rank = int(os.environ.get('LOCAL_RANK', 0))
     rank, world = int(os.environ.get('RANK', 0)), int(os.environ.get('WORLD_SIZE', 1))
-    torch.npu.set_device(local_rank)
+    device_utils.set_device(local_rank)
     os.environ.update(RANK=str(rank), WORLD_SIZE=str(world), LOCAL_RANK=str(local_rank))
     maybe_init_distributed_environment_and_model_parallel(
         1, 1, distributed_init_method='env://' if world > 1 else 'tcp://127.0.0.1:29883')
@@ -119,8 +118,8 @@ def main() -> None:
                         'fake_score_lr_scheduler': 'constant',
                     })
     _, method, dataloader, _ = build_from_config(cfg)
-    method.student.negative_prompt_embeds = sample['negative_prompt_embeds'].to('npu', torch.bfloat16)
-    negative_mask = torch.zeros(sample['negative_prompt_embeds'].shape[:2], device='npu')
+    method.student.negative_prompt_embeds = sample['negative_prompt_embeds'].to(device_utils.device_type(), torch.bfloat16)
+    negative_mask = torch.zeros(sample['negative_prompt_embeds'].shape[:2], device=device_utils.device_type())
     negative_mask[:, 0] = 1
     method.student.negative_prompt_attention_mask = negative_mask
     method.on_train_start()
@@ -136,9 +135,10 @@ def main() -> None:
         for optimizer in optimizers:
             optimizer.zero_grad(set_to_none=True)
         timings = {}
+
         def mark(name):
             if args.time_phases:
-                torch.npu.synchronize()
+                device_utils.synchronize()
                 timings[name] = time.perf_counter()
 
         mark('start')
@@ -196,7 +196,7 @@ def main() -> None:
                                  repetitions=args.steps,
                                  training_sample=args.training_sample)
         profile.metadata['calibration_ms'] = (time.perf_counter() - started) * 1000
-        profile.metadata['allocator_config'] = os.environ.get('PYTORCH_NPU_ALLOC_CONF', '')
+        profile.metadata['allocator_config'] = device_utils.allocator_config()
         profile.save(args.output)
         print(json.dumps({'profile': args.output, 'events': len(profile.events), 'blocks': len(profile.blocks)}))
         cleanup_dist_env_and_memory()
@@ -205,20 +205,20 @@ def main() -> None:
         step()
     records = []
     for _ in range(args.steps):
-        torch.npu.synchronize()
-        torch.npu.reset_peak_memory_stats()
+        device_utils.synchronize()
+        device_utils.reset_peak_memory_stats()
         started = time.perf_counter()
         if args.trace_events:
             from role_profile import trace_step
             record = trace_step(method, step)
         else:
             record = step()
-        torch.npu.synchronize()
+        device_utils.synchronize()
         record.update(step_ms=(time.perf_counter() - started) * 1000,
-                      peak_allocated_bytes=torch.npu.max_memory_allocated(),
-                      peak_reserved_bytes=torch.npu.max_memory_reserved())
+                      peak_allocated_bytes=device_utils.max_memory_allocated(),
+                      peak_reserved_bytes=device_utils.max_memory_reserved())
         records.append(record)
-    torch.npu.synchronize()
+    device_utils.synchronize()
     records, rank_records = gather_step_records(records)
     result = {
         'executor': 'FastVideo DMD2Method / WanModel / FSDP2',
@@ -238,8 +238,8 @@ def main() -> None:
         'master_dtype': 'float32',
         'autocast_dtype': 'bfloat16',
         'torch': torch.__version__,
-        'torch_npu': torch_npu.__version__,
-        'allocator_config': os.environ.get('PYTORCH_NPU_ALLOC_CONF', ''),
+        **device_utils.runtime_metadata(),
+        'allocator_config': device_utils.allocator_config(),
         'peak_allocated_bytes': max(record['peak_allocated_bytes'] for record in records)
     }
     if rank == 0:

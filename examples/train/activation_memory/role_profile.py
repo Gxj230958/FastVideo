@@ -7,8 +7,9 @@ from contextlib import contextmanager
 from typing import Any
 
 import torch
-
 from fastvideo.train.utils.activation_memory import BlockCosts, MemoryProfile, PolicyCost
+
+import device_utils
 
 
 def calibrate_dmd2(method: Any, step: Callable[..., Any], template: MemoryProfile, *,
@@ -41,13 +42,14 @@ def calibrate_dmd2(method: Any, step: Callable[..., Any], template: MemoryProfil
         step()
     observed = [0] * len(events)
     phase: str | None = None
+
     def transition(name: str) -> None:
         nonlocal phase
-        torch.npu.synchronize()
+        device_utils.synchronize()
         if phase is not None and phase in indices:
-            observed[indices[phase]] = max(observed[indices[phase]], torch.npu.max_memory_allocated())
+            observed[indices[phase]] = max(observed[indices[phase]], device_utils.max_memory_allocated())
         phase = name
-        torch.npu.reset_peak_memory_stats()
+        device_utils.reset_peak_memory_stats()
 
     with observe_role_events(method, transition):
         for _ in range(repetitions):
@@ -144,7 +146,7 @@ def trace_step(method, step):
         nonlocal scope
         if scope is not None:
             scope.__exit__(None, None, None)
-        marker = torch.npu.Event(enable_timing=True)
+        marker = device_utils.accelerator().Event(enable_timing=True)
         marker.record()
         markers.append((name, marker))
         scope = torch.profiler.record_function('role_event/' + name)
@@ -156,7 +158,7 @@ def trace_step(method, step):
             record = step(transition)
             transition('complete')
             scope.__exit__(None, None, None)
-            torch.npu.synchronize()
+            device_utils.synchronize()
 
     elapsed = Counter()
     for (name, first), (_, second) in zip(markers, markers[1:]):
