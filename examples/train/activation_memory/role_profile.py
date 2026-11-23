@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from contextlib import contextmanager
 from typing import Any
+from time import perf_counter_ns
 
 import torch
 from fastvideo.train.utils.activation_memory import BlockCosts, MemoryProfile, PolicyCost
@@ -135,20 +136,68 @@ def observe_role_events(method, transition):
             model.predict_noise, model.backward = predict, backward
 
 
-def trace_step(method, step):
+STALL_EVENTS = ('critic.forward.18', 'critic.backward.20', 'critic.backward.21')
+
+
+def allocator_step(method, step):
+    """Read allocator counters on either side of the three critic intervals."""
+    device = device_utils.accelerator()
+    keys = ('num_alloc_retries', 'num_ooms', 'reserved_bytes.all.allocated', 'reserved_bytes.all.freed',
+            'allocated_bytes.all.current', 'reserved_bytes.all.current', 'inactive_split_bytes.all.current')
+    intervals = {}
+    active = None
+    started = 0
+
+    def transition(name):
+        nonlocal active, started
+        if active is not None or name in STALL_EVENTS:
+            now = perf_counter_ns()
+            stats = device.memory_stats()
+            snapshot = {key: stats[key] for key in keys}
+            if active is not None:
+                intervals[active].update(exit=snapshot, host_ms=(now - started) / 1e6)
+            if name in STALL_EVENTS:
+                intervals[name] = {'entry': snapshot}
+                started = perf_counter_ns()
+        active = name if name in STALL_EVENTS else None
+
+    with observe_role_events(method, transition):
+        record = step(transition)
+    record['allocator_intervals'] = intervals
+    return record
+
+
+def trace_step(method, step, sync_event=None):
     """Measure stream intervals and group CPU operator self times by submission interval."""
     from collections import Counter
 
     markers = []
     scope = None
+    snapshots = {}
+    barrier_ms = []
+    device = device_utils.accelerator()
+
+    def mark(name):
+        marker = device.Event(enable_timing=True)
+        marker.record()
+        markers.append((name, marker, perf_counter_ns()))
+
+    def memory():
+        return {'allocated_bytes': device.memory_allocated(), 'reserved_bytes': device.memory_reserved()}
 
     def transition(name):
         nonlocal scope
         if scope is not None:
             scope.__exit__(None, None, None)
-        marker = device_utils.accelerator().Event(enable_timing=True)
-        marker.record()
-        markers.append((name, marker))
+        if name in STALL_EVENTS or name == sync_event:
+            snapshots[name] = {'entry': memory()}
+        if name == sync_event:
+            mark('barrier.' + name)
+            started = perf_counter_ns()
+            device_utils.synchronize()
+            barrier_ms.append((perf_counter_ns() - started) / 1e6)
+            snapshots[name]['after_sync'] = memory()
+        mark(name)
         scope = torch.profiler.record_function('role_event/' + name)
         scope.__enter__()
 
@@ -161,8 +210,15 @@ def trace_step(method, step):
             device_utils.synchronize()
 
     elapsed = Counter()
-    for (name, first), (_, second) in zip(markers, markers[1:]):
+    if sync_event and len(barrier_ms) != 1:
+        raise ValueError(f'Expected one visit to {sync_event}, observed {len(barrier_ms)}')
+    host = Counter()
+    for (name, first, start), (_, second, end) in zip(markers, markers[1:]):
         elapsed[name] += first.elapsed_time(second)
+        host[name] += (end - start) / 1e6
+    record['barrier_host_ms'] = sum(barrier_ms)
+    record['host_interval_ms'] = dict(host)
+    record['allocator_at_entry'] = snapshots
     cpu_ops = {}
     for op in prof.events():
         parent = op.cpu_parent

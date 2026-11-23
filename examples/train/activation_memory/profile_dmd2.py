@@ -31,6 +31,8 @@ import device_utils
 from layouts import policy_for
 from measurements import gather_step_records
 
+SEED = 2026
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -48,20 +50,30 @@ def main() -> None:
     parser.add_argument('--critic-policy', choices=['save', 'recompute', 'offload'])
     parser.add_argument('--critic-save-count', type=int)
     parser.add_argument('--checkpoint-every', type=int, default=2)
+    parser.add_argument('--layout-file', type=Path, help='Exact per-block policies for student and critic')
+    parser.add_argument('--sync-event', help='Synchronize before a single-visit event during traced updates')
     parser.add_argument('--profile')
     parser.add_argument('--calibrate-from')
     parser.add_argument('--budget-gib', type=float)
-    parser.add_argument('--trace-events', action='store_true', help='Collect CPU operator self times by role event')
+    diagnostic = parser.add_mutually_exclusive_group()
+    diagnostic.add_argument('--allocator-events', action='store_true', help='Sample allocator retries and reserve turnover')
+    diagnostic.add_argument('--trace-events', action='store_true', help='Collect CPU operator self times by role event')
     parser.add_argument('--time-phases', action='store_true', help='Synchronize at train and backward boundaries')
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
+    if args.sync_event and not args.trace_events:
+        parser.error('--sync-event requires --trace-events')
+    if args.layout_file and (args.profile or args.calibrate_from):
+        parser.error('--layout-file conflicts with profile selection and calibration')
     torch.set_num_threads(8)
     local_rank = int(os.environ.get('LOCAL_RANK', 0))
     rank, world = int(os.environ.get('RANK', 0)), int(os.environ.get('WORLD_SIZE', 1))
     device_utils.set_device(local_rank)
+    torch.manual_seed(SEED)
     os.environ.update(RANK=str(rank), WORLD_SIZE=str(world), LOCAL_RANK=str(local_rank))
+    port = os.environ.get('MASTER_PORT', '29883')
     maybe_init_distributed_environment_and_model_parallel(
-        1, 1, distributed_init_method='env://' if world > 1 else 'tcp://127.0.0.1:29883')
+        1, 1, distributed_init_method='env://' if world > 1 else f'tcp://127.0.0.1:{port}')
     sample = torch.load(args.training_sample, map_location='cpu', weights_only=True)
     config = TrainingConfig(
         model_path=args.model,
@@ -72,7 +84,7 @@ def main() -> None:
                         train_batch_size=1,
                         dataloader_num_workers=0,
                         training_cfg_rate=0,
-                        seed=2026,
+                        seed=SEED,
                         num_height=sample['height'],
                         num_width=sample['width'],
                         num_latent_t=sample['latents'].shape[2],
@@ -87,6 +99,7 @@ def main() -> None:
     count = json.loads((Path(args.model) / 'transformer/config.json').read_text())['num_layers']
     holder = torch.nn.Module()
     holder.blocks = torch.nn.ModuleList([torch.nn.Identity() for _ in range(count)])
+    explicit = json.loads(args.layout_file.read_text()) if args.layout_file else None
     roles = {}
     for role in ('student', 'teacher', 'critic'):
         roles[role] = {
@@ -95,7 +108,11 @@ def main() -> None:
             'trainable': role != 'teacher',
             'attention_backend': 'TORCH_SDPA',
         }
-        if role != 'teacher' and not args.profile:
+        if role != 'teacher' and explicit is not None:
+            if set(explicit[role]) != {f'blocks.{i}' for i in range(count)}:
+                raise ValueError(f'Explicit layout must cover every {role} block')
+            roles[role]['activation_memory_plan'] = explicit[role]
+        elif role != 'teacher' and not args.profile:
             save_count = (args.critic_save_count
                           if role == 'critic' and args.critic_save_count is not None else args.save_count)
             role_policy = getattr(args, f'{role}_policy') or args.policy
@@ -210,7 +227,10 @@ def main() -> None:
         started = time.perf_counter()
         if args.trace_events:
             from role_profile import trace_step
-            record = trace_step(method, step)
+            record = trace_step(method, step, args.sync_event)
+        elif args.allocator_events:
+            from role_profile import allocator_step
+            record = allocator_step(method, step)
         else:
             record = step()
         device_utils.synchronize()
@@ -229,8 +249,12 @@ def main() -> None:
         'rank_measurements': rank_records,
         'warmup_steps': args.warmup,
         'teacher_trainable': method.teacher._trainable,
-        'policy': args.policy if not args.profile else 'budget',
+        'policy': 'explicit' if explicit is not None else ('budget' if args.profile else args.policy),
         'profile': args.profile,
+        'layout_file': str(args.layout_file) if args.layout_file else None,
+        'sync_event': args.sync_event,
+        'seed': SEED,
+        'visible_devices': os.environ.get('ASCEND_RT_VISIBLE_DEVICES', os.environ.get('CUDA_VISIBLE_DEVICES')),
         'manual_policies': {
             role: config.get('activation_memory_plan')
             for role, config in roles.items() if role != 'teacher'
