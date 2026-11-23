@@ -56,6 +56,7 @@ def main() -> None:
     parser.add_argument('--calibrate-from')
     parser.add_argument('--budget-gib', type=float)
     diagnostic = parser.add_mutually_exclusive_group()
+    diagnostic.add_argument('--map-retries', action='store_true', help='Locate retries between all observed role events')
     diagnostic.add_argument('--allocator-events', action='store_true', help='Sample allocator retries and reserve turnover')
     diagnostic.add_argument('--trace-events', action='store_true', help='Collect CPU operator self times by role event')
     parser.add_argument('--time-phases', action='store_true', help='Synchronize at train and backward boundaries')
@@ -228,9 +229,9 @@ def main() -> None:
         if args.trace_events:
             from role_profile import trace_step
             record = trace_step(method, step, args.sync_event)
-        elif args.allocator_events:
+        elif args.allocator_events or args.map_retries:
             from role_profile import allocator_step
-            record = allocator_step(method, step)
+            record = allocator_step(method, step, map_retries=args.map_retries)
         else:
             record = step()
         device_utils.synchronize()

@@ -139,7 +139,7 @@ def observe_role_events(method, transition):
 STALL_EVENTS = ('critic.forward.18', 'critic.backward.20', 'critic.backward.21')
 
 
-def allocator_step(method, step):
+def allocator_step(method, step, *, map_retries=False):
     """Read allocator counters on either side of the three critic intervals."""
     device = device_utils.accelerator()
     keys = ('num_alloc_retries', 'num_ooms', 'reserved_bytes.all.allocated', 'reserved_bytes.all.freed',
@@ -148,21 +148,40 @@ def allocator_step(method, step):
     active = None
     started = 0
 
+    def snapshot():
+        stats = device.memory_stats()
+        return {key: stats[key] for key in keys}
+
+    transitions = []
+
     def transition(name):
         nonlocal active, started
-        if active is not None or name in STALL_EVENTS:
+        if map_retries or active is not None or name in STALL_EVENTS:
             now = perf_counter_ns()
-            stats = device.memory_stats()
-            snapshot = {key: stats[key] for key in keys}
+            counters = snapshot()
+            if map_retries:
+                transitions.append((name, counters))
             if active is not None:
-                intervals[active].update(exit=snapshot, host_ms=(now - started) / 1e6)
+                intervals[active].update(exit=counters, host_ms=(now - started) / 1e6)
             if name in STALL_EVENTS:
-                intervals[name] = {'entry': snapshot}
+                intervals[name] = {'entry': counters}
                 started = perf_counter_ns()
         active = name if name in STALL_EVENTS else None
 
     with observe_role_events(method, transition):
+        entry = snapshot()
         record = step(transition)
+        device_utils.synchronize()
+        record['allocator_whole_step'] = {'entry': entry, 'exit': snapshot()}
+    if map_retries:
+        boundaries = [('setup', entry), *transitions, ('complete', record['allocator_whole_step']['exit'])]
+        record['retry_locations'] = []
+        for (name, before), (_, after) in zip(boundaries, boundaries[1:]):
+            retries = after['num_alloc_retries'] - before['num_alloc_retries']
+            if retries:
+                record['retry_locations'].append({'event': name, 'retries': retries,
+                                                  'freed_bytes': after['reserved_bytes.all.freed'] -
+                                                  before['reserved_bytes.all.freed']})
     record['allocator_intervals'] = intervals
     return record
 

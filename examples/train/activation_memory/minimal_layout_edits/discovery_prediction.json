@@ -1,0 +1,31 @@
+{
+  "frozen_utc": "2026-11-23T09:30:44.353551+00:00",
+  "primary": "A1 has fewer forward-18 retries than B1. Whole-step retries and timing are independent outcomes.",
+  "predicted_forward18_and_peak_gib": {
+    "solver": [
+      50.475233,
+      53.891429
+    ],
+    "A1": [
+      50.180532,
+      53.596728
+    ],
+    "B1": [
+      50.475233,
+      53.596728
+    ],
+    "A2": [
+      49.88583,
+      53.302026
+    ],
+    "B2": [
+      50.475233,
+      53.302026
+    ],
+    "selected": [
+      47.976853,
+      53.142253
+    ]
+  },
+  "decision": "Advance one edit if A1 reduces whole-step retries versus both B1 and solver and beats both on all three paired timings. Otherwise test A2/B2; stop if neither dose shows a position advantage."
+}
