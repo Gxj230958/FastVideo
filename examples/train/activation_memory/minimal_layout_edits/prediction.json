@@ -1,0 +1,39 @@
+{
+  "frozen_utc": "2026-11-23T09:47:18.430931+00:00",
+  "edit_count": 2,
+  "student": "exact 24-save solver map",
+  "roles": {
+    "solver": [],
+    "Ap2": [
+      9,
+      10
+    ],
+    "Bp2": [
+      26,
+      27
+    ]
+  },
+  "samples": [
+    "hiker",
+    "cosmos"
+  ],
+  "prediction": {
+    "forward18_retries_per_step": {
+      "solver": 1,
+      "Ap2": 0,
+      "Bp2": 1
+    },
+    "whole_retries_per_step": {
+      "solver": 2,
+      "Ap2": 2,
+      "Bp2": 2
+    },
+    "time_order_fast_to_slow": [
+      "solver",
+      "Bp2",
+      "Ap2"
+    ]
+  },
+  "reason": "A1 removed the local retry but did not reduce total retries or beat B1. The planned two-block dose also shifted retries; B2 was faster than A2 on all three cards. Transfer that observed ordering to new positions.",
+  "evaluation": "Test the forward-window and whole-step mean counts separately. For timing, compare the means of the three five-step process means on each clip, and report all three same-card differences. A strict order is tested on each clip independently."
+}
