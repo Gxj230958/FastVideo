@@ -1,0 +1,4170 @@
+[
+ {
+  "run": "L1_A_free",
+  "iter": 5,
+  "barrier_host_ms": 0,
+  "sync20_host_ms": 8.219,
+  "host_ms": {
+   "setup": 184.71,
+   "score.critic": 156.94,
+   "rollout.student": 153.57,
+   "score.teacher.unconditional": 147.78,
+   "score.teacher.conditional": 146.17,
+   "student.backward.29": 129.86
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    171.9
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    9.43
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.99
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.98
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.98
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.96
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.98
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.65
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.63
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.63
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.64
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.63
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.63
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.63
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.64
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.63
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.64
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.62
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.63
+   ],
+   "student.forward.18": [
+    "aten::addmm",
+    0.75
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.63
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.63
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.63
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.65
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.97
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.64
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.64
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.63
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.63
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.95
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.37
+   ],
+   "score.critic": [
+    "aten::copy_",
+    17.64
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    16.56
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.9
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    16.56
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    7.02
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.68
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.7
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.68
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.68
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.68
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.67
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.74
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.76
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.68
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.67
+   ],
+   "critic.forward.11": [
+    "RegisterPostBackwardFunction",
+    0.87
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.68
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.69
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.67
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.73
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.74
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.68
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.67
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.8
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.68
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.67
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.67
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.72
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.73
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.68
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.69
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.69
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.68
+   ],
+   "critic.forward.29": [
+    "aten::addmm",
+    0.33
+   ],
+   "student.backward.29": [
+    "cudaHostAlloc",
+    1.24
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.82
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.81
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.82
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.81
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.8
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.79
+   ],
+   "student.backward.22": [
+    "aten::mul",
+    109.17
+   ],
+   "student.backward.21": [
+    "aten::copy_",
+    1.65
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.78
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.78
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.39
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.77
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.78
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.79
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.78
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.8
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.78
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.8
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.78
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.79
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.79
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.4
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.35
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.78
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.34
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.77
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.36
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.79
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.75
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.77
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.77
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.78
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.77
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.77
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.78
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.78
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.77
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.77
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.77
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.76
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.77
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.77
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.79
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.78
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.79
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.78
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.77
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.78
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.77
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.77
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.76
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.76
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.77
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.76
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.77
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.78
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.76
+   ],
+   "clipping": [
+    "aten::mul_",
+    60.31
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    12.15
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    12.3
+   ]
+  },
+  "step_ms": 18887.2
+ },
+ {
+  "run": "L1_A_free",
+  "iter": 6,
+  "barrier_host_ms": 0,
+  "sync20_host_ms": 8.21,
+  "host_ms": {
+   "rollout.student": 151.33,
+   "score.teacher.unconditional": 150.45,
+   "score.critic": 149.86,
+   "score.teacher.conditional": 149.41,
+   "clipping": 93.45,
+   "optimizer.student": 72.21
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    8.83
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    7.08
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.73
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.72
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.72
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.72
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.73
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.73
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.72
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.71
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.72
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.73
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.79
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.72
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.74
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.72
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.71
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.71
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.72
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.71
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.71
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.7
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.71
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.72
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.7
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.7
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.7
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.71
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.7
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    3.52
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.41
+   ],
+   "score.critic": [
+    "aten::copy_",
+    16.63
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    16.88
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.93
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    16.46
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    6.97
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.67
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.7
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.68
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.68
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.67
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.67
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.72
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.72
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.69
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.67
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.67
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.68
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.78
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.68
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.72
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.72
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.68
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.68
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.69
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.67
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.68
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.67
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.72
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.73
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.7
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.7
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.67
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.67
+   ],
+   "critic.forward.29": [
+    "aten::addmm",
+    0.33
+   ],
+   "student.backward.29": [
+    "aten::_chunk_cat",
+    1.08
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.83
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.83
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.82
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.96
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.81
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.8
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.5
+   ],
+   "student.backward.21": [
+    "aten::copy_",
+    2.08
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.79
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.79
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.45
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.79
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.8
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.8
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.8
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.82
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.81
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.81
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.8
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.81
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.79
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.43
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.35
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.79
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.53
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.8
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.39
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.79
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.77
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.79
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.8
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.81
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.8
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.8
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.81
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.81
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.8
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.79
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.79
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.78
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.79
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.78
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.78
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.79
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.78
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.79
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.78
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.78
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.78
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.8
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.79
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.79
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.79
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.79
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.78
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.79
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.8
+   ],
+   "clipping": [
+    "aten::mul_",
+    60.82
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    13.3
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    12.78
+   ]
+  },
+  "step_ms": 20889.7
+ },
+ {
+  "run": "L1_A_sync20",
+  "iter": 5,
+  "barrier_host_ms": 0.044,
+  "sync20_host_ms": 8.113,
+  "host_ms": {
+   "rollout.student": 150.85,
+   "score.teacher.conditional": 145.42,
+   "score.critic": 144.49,
+   "score.teacher.unconditional": 143.83,
+   "clipping": 93.36,
+   "optimizer.student": 72.7
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    6.51
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    6.84
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    1.48
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.65
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.63
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.65
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.64
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.65
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.65
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.65
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.64
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.63
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.63
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.63
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.63
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.64
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.64
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.64
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.64
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.64
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.63
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.63
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.65
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.64
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.64
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.64
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.64
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.65
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.64
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.64
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.39
+   ],
+   "score.critic": [
+    "aten::copy_",
+    16.18
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    16.21
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.39
+   ],
+   "rollout.student": [
+    "cudaLaunchKernel",
+    16.2
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    6.8
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.64
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.63
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.64
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.67
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.63
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.64
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.69
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.7
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.64
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.66
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.67
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.63
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.63
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.64
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.7
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.7
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.65
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.63
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.75
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.64
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.64
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.64
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.7
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.7
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.64
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.64
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.66
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.64
+   ],
+   "critic.forward.29": [
+    "aten::addmm",
+    0.32
+   ],
+   "student.backward.29": [
+    "cudaHostAlloc",
+    1.18
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.79
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.78
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.79
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.78
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.77
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.78
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.37
+   ],
+   "student.backward.21": [
+    "aten::copy_",
+    1.5
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.76
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.82
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.55
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.82
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.78
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.78
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.76
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.78
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.77
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.78
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.81
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.77
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.77
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.32
+   ],
+   "student.backward.6": [
+    "aten::cat",
+    2.9
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.76
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.32
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.78
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.34
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.77
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.77
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.77
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.78
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    2.33
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    3.59
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.78
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.77
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.78
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.78
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.77
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.76
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.78
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.78
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.77
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.79
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.81
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.81
+   ],
+   "critic.backward.12": [
+    "aten::_chunk_cat",
+    1.13
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.82
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    2.01
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.77
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.77
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.97
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.9
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.78
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.78
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.78
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.79
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.79
+   ],
+   "clipping": [
+    "aten::mul_",
+    59.49
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    12.51
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    12.73
+   ]
+  },
+  "step_ms": 19044.4
+ },
+ {
+  "run": "L1_A_sync20",
+  "iter": 6,
+  "barrier_host_ms": 0.044,
+  "sync20_host_ms": 30.632,
+  "host_ms": {
+   "score.critic": 185.15,
+   "score.teacher.conditional": 161.4,
+   "rollout.student": 152.18,
+   "score.teacher.unconditional": 147.9,
+   "clipping": 98.72,
+   "optimizer.student": 73.29
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    9.01
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    6.95
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.76
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.77
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.72
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.75
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.72
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.76
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.72
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.87
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.89
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.9
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.81
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.73
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.72
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.75
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.77
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.71
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.73
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.74
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.74
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.75
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.73
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    2.11
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    1.09
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.77
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.76
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.75
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.74
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    4.09
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.44
+   ],
+   "score.critic": [
+    "aten::copy_",
+    18.33
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    17.02
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.66
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    16.29
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    6.82
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.68
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.68
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.67
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.69
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.68
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.68
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.69
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.69
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.68
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.67
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.69
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.68
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.78
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.68
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.69
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.7
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.68
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.68
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.67
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.67
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.67
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.69
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.69
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.72
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.69
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.68
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.67
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.68
+   ],
+   "critic.forward.29": [
+    "cudaLaunchKernel",
+    0.33
+   ],
+   "student.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    1.05
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.83
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.83
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.82
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.95
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.81
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.8
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.59
+   ],
+   "student.backward.21": [
+    "aten::copy_",
+    2.01
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.8
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.79
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.44
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.79
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.81
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.8
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.8
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.81
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.82
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.83
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.84
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.91
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.94
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.85
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.4
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.8
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.6
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.81
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.47
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.84
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.78
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.81
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.8
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.85
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    4.52
+   ],
+   "critic.backward.24": [
+    "FSDP::pre_backward (blocks.24)",
+    1.05
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.78
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.8
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.98
+   ],
+   "critic.backward.20": [
+    "aten::_chunk_cat",
+    4.04
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.78
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.78
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.79
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.79
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.78
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.78
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.78
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.78
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    2.51
+   ],
+   "critic.backward.10": [
+    "FSDP::pre_backward (blocks.10)",
+    1.44
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.78
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.78
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.79
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.8
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.79
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.84
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.83
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.79
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    2.06
+   ],
+   "clipping": [
+    "aten::mul_",
+    63.91
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    13.52
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    13.21
+   ]
+  },
+  "step_ms": 22052.7
+ },
+ {
+  "run": "L1_B_free",
+  "iter": 5,
+  "barrier_host_ms": 0,
+  "sync20_host_ms": 8.107,
+  "host_ms": {
+   "rollout.student": 151.1,
+   "score.teacher.conditional": 145.09,
+   "score.critic": 143.41,
+   "score.teacher.unconditional": 143.34,
+   "clipping": 93.21,
+   "optimizer.student": 67.87
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    6.32
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    6.73
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.68
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.66
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.68
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.66
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.65
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.67
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.66
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.65
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.65
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.65
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.65
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.65
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.65
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.67
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.66
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.65
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.65
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.64
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.65
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.65
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.65
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.65
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.64
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.64
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.64
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.63
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.64
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.64
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.38
+   ],
+   "score.critic": [
+    "aten::copy_",
+    15.93
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    15.98
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    15.98
+   ],
+   "student.backward.29": [
+    "cudaHostAlloc",
+    1.12
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.78
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.78
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.77
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.77
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.78
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.78
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.39
+   ],
+   "student.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.77
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.77
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.78
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.33
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.78
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.8
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.78
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.78
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.78
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.78
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.77
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.77
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.77
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.78
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.35
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.33
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.77
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.32
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.76
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.32
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.76
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    15.99
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    11.14
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.68
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.68
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.68
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.68
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    1.04
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.68
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.69
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.68
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.69
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.67
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.67
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.68
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.67
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.67
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.68
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.68
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.67
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.67
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    1.61
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.68
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.68
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.67
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.68
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.69
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.68
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.69
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.68
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.67
+   ],
+   "critic.forward.29": [
+    "cudaLaunchKernel",
+    0.32
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.77
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.78
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.78
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.78
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.76
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.87
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.78
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.77
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.77
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.77
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.76
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.76
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.75
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.77
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.77
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.76
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.77
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.79
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.77
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.77
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.77
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.76
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.77
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.77
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.77
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.78
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.77
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.77
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.76
+   ],
+   "clipping": [
+    "aten::mul_",
+    61.5
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    12.09
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    12.44
+   ]
+  },
+  "step_ms": 18718.6
+ },
+ {
+  "run": "L1_B_free",
+  "iter": 6,
+  "barrier_host_ms": 0,
+  "sync20_host_ms": 8.002,
+  "host_ms": {
+   "rollout.student": 149.43,
+   "score.critic": 148.0,
+   "score.teacher.conditional": 146.19,
+   "score.teacher.unconditional": 144.55,
+   "clipping": 95.07,
+   "optimizer.student": 69.65
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    7.1
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    6.8
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.75
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.71
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.71
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.71
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.69
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.72
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.7
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.69
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.68
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.7
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.79
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.69
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.7
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.69
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.71
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.69
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.72
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.71
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.69
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.69
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.69
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.7
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.7
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.71
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.7
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.71
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.72
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    3.64
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.44
+   ],
+   "score.critic": [
+    "aten::copy_",
+    16.07
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    16.08
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.2
+   ],
+   "student.backward.29": [
+    "aten::_chunk_cat",
+    1.01
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.81
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.8
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.81
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.79
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.78
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.79
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.52
+   ],
+   "student.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.8
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.79
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.78
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.36
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.79
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.81
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.79
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.79
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.78
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.8
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.79
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.78
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.79
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.79
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.37
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.34
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.79
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.52
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.79
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.36
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.79
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    15.96
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    7.11
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.66
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.66
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.66
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.67
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.68
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.66
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.66
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.66
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.66
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.66
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.68
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.68
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.66
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.67
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.68
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.66
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.67
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.68
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.68
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.69
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.66
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.66
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.66
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.68
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.66
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.67
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.66
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.66
+   ],
+   "critic.forward.29": [
+    "cudaLaunchKernel",
+    0.31
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.77
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.78
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.78
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.78
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.9
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.78
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.77
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.77
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.77
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.77
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.77
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.77
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.77
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.77
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.78
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.78
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.77
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.76
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.76
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.76
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.76
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.76
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.77
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.76
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.76
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.76
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.76
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.76
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.77
+   ],
+   "clipping": [
+    "aten::mul_",
+    62.96
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    12.83
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    12.61
+   ]
+  },
+  "step_ms": 21225.3
+ },
+ {
+  "run": "L1_B_sync20",
+  "iter": 5,
+  "barrier_host_ms": 0.057,
+  "sync20_host_ms": 7.977,
+  "host_ms": {
+   "score.teacher.conditional": 149.58,
+   "rollout.student": 149.3,
+   "score.critic": 143.43,
+   "score.teacher.unconditional": 142.87,
+   "clipping": 91.96,
+   "optimizer.student": 66.55
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    6.25
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    6.91
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.65
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.64
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.63
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.64
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.64
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.66
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.64
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.64
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.64
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.63
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.64
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.63
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.64
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.64
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.64
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.63
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.64
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.64
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.63
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.64
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.63
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.65
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.64
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.64
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.63
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.64
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.64
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.63
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.39
+   ],
+   "score.critic": [
+    "aten::copy_",
+    16.03
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    16.2
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.14
+   ],
+   "student.backward.29": [
+    "cudaHostAlloc",
+    1.17
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.77
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.77
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.76
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.76
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.77
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.77
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.38
+   ],
+   "student.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.76
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.76
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.76
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.32
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.78
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.77
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.75
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.75
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.75
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.76
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.76
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.75
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.76
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.77
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.31
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.29
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.76
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.31
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.77
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.33
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.76
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    15.88
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    8.69
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.63
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.63
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.62
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.63
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.93
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.62
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.64
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.64
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.63
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.62
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.62
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.62
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.62
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    1.04
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.63
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.63
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.62
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.62
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.63
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.63
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.62
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.62
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.63
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.63
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.62
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.64
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.64
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.63
+   ],
+   "critic.forward.29": [
+    "aten::addmm",
+    0.32
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.78
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.79
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.78
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.77
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.76
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.86
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.77
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.76
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.76
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.76
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.76
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.76
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.77
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.76
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.76
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.76
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.76
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.75
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.76
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.76
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.76
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.76
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.76
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.84
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.76
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.75
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.76
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.76
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.76
+   ],
+   "clipping": [
+    "aten::mul_",
+    60.46
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    11.85
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    11.98
+   ]
+  },
+  "step_ms": 18145.0
+ },
+ {
+  "run": "L1_B_sync20",
+  "iter": 6,
+  "barrier_host_ms": 0.042,
+  "sync20_host_ms": 8.012,
+  "host_ms": {
+   "rollout.student": 149.05,
+   "score.critic": 146.62,
+   "score.teacher.conditional": 145.23,
+   "score.teacher.unconditional": 144.47,
+   "clipping": 94.2,
+   "optimizer.student": 68.49
+  },
+  "top_cpu_op": {
+   "setup": [
+    "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+    14.14
+   ],
+   "student.forward.0": [
+    "aten::copy_",
+    6.91
+   ],
+   "student.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.71
+   ],
+   "student.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.7
+   ],
+   "student.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.7
+   ],
+   "student.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.71
+   ],
+   "student.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.7
+   ],
+   "student.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.71
+   ],
+   "student.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.7
+   ],
+   "student.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.71
+   ],
+   "student.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.71
+   ],
+   "student.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.69
+   ],
+   "student.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.78
+   ],
+   "student.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.69
+   ],
+   "student.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.69
+   ],
+   "student.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.7
+   ],
+   "student.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.7
+   ],
+   "student.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.69
+   ],
+   "student.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.69
+   ],
+   "student.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.69
+   ],
+   "student.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.69
+   ],
+   "student.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.68
+   ],
+   "student.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.7
+   ],
+   "student.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.69
+   ],
+   "student.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.67
+   ],
+   "student.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.68
+   ],
+   "student.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.68
+   ],
+   "student.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.68
+   ],
+   "student.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.68
+   ],
+   "student.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    3.34
+   ],
+   "student.forward.29": [
+    "cudaLaunchKernel",
+    0.43
+   ],
+   "score.critic": [
+    "aten::copy_",
+    16.21
+   ],
+   "score.teacher.conditional": [
+    "aten::copy_",
+    16.16
+   ],
+   "score.teacher.unconditional": [
+    "aten::copy_",
+    16.33
+   ],
+   "student.backward.29": [
+    "aten::_chunk_cat",
+    1.03
+   ],
+   "student.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.81
+   ],
+   "student.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.79
+   ],
+   "student.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.8
+   ],
+   "student.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.79
+   ],
+   "student.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.78
+   ],
+   "student.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.78
+   ],
+   "student.backward.22": [
+    "MulBackward0",
+    1.46
+   ],
+   "student.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.79
+   ],
+   "student.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.77
+   ],
+   "student.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.78
+   ],
+   "student.backward.18": [
+    "MulBackward0",
+    1.36
+   ],
+   "student.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.78
+   ],
+   "student.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.77
+   ],
+   "student.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.77
+   ],
+   "student.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.77
+   ],
+   "student.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.77
+   ],
+   "student.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.77
+   ],
+   "student.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.77
+   ],
+   "student.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.79
+   ],
+   "student.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.79
+   ],
+   "student.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.78
+   ],
+   "student.backward.7": [
+    "MulBackward0",
+    1.38
+   ],
+   "student.backward.6": [
+    "MulBackward0",
+    1.32
+   ],
+   "student.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.77
+   ],
+   "student.backward.4": [
+    "MulBackward0",
+    1.54
+   ],
+   "student.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.77
+   ],
+   "student.backward.2": [
+    "MulBackward0",
+    1.33
+   ],
+   "student.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.77
+   ],
+   "rollout.student": [
+    "aten::copy_",
+    15.98
+   ],
+   "critic.forward.0": [
+    "aten::copy_",
+    7.2
+   ],
+   "critic.forward.1": [
+    "FSDP::pre_forward (blocks.2)",
+    0.67
+   ],
+   "critic.forward.2": [
+    "FSDP::pre_forward (blocks.3)",
+    0.67
+   ],
+   "critic.forward.3": [
+    "FSDP::pre_forward (blocks.4)",
+    0.68
+   ],
+   "critic.forward.4": [
+    "FSDP::pre_forward (blocks.5)",
+    0.69
+   ],
+   "critic.forward.5": [
+    "FSDP::pre_forward (blocks.6)",
+    0.67
+   ],
+   "critic.forward.6": [
+    "FSDP::pre_forward (blocks.7)",
+    0.67
+   ],
+   "critic.forward.7": [
+    "FSDP::pre_forward (blocks.8)",
+    0.67
+   ],
+   "critic.forward.8": [
+    "FSDP::pre_forward (blocks.9)",
+    0.67
+   ],
+   "critic.forward.9": [
+    "FSDP::pre_forward (blocks.10)",
+    0.68
+   ],
+   "critic.forward.10": [
+    "FSDP::pre_forward (blocks.11)",
+    0.67
+   ],
+   "critic.forward.11": [
+    "FSDP::pre_forward (blocks.12)",
+    0.7
+   ],
+   "critic.forward.12": [
+    "FSDP::pre_forward (blocks.13)",
+    0.67
+   ],
+   "critic.forward.13": [
+    "FSDP::pre_forward (blocks.14)",
+    0.68
+   ],
+   "critic.forward.14": [
+    "FSDP::pre_forward (blocks.15)",
+    0.68
+   ],
+   "critic.forward.15": [
+    "FSDP::pre_forward (blocks.16)",
+    0.67
+   ],
+   "critic.forward.16": [
+    "FSDP::pre_forward (blocks.17)",
+    0.67
+   ],
+   "critic.forward.17": [
+    "FSDP::pre_forward (blocks.18)",
+    0.68
+   ],
+   "critic.forward.18": [
+    "FSDP::pre_forward (blocks.19)",
+    0.66
+   ],
+   "critic.forward.19": [
+    "FSDP::pre_forward (blocks.20)",
+    0.66
+   ],
+   "critic.forward.20": [
+    "FSDP::pre_forward (blocks.21)",
+    0.67
+   ],
+   "critic.forward.21": [
+    "FSDP::pre_forward (blocks.22)",
+    0.66
+   ],
+   "critic.forward.22": [
+    "FSDP::pre_forward (blocks.23)",
+    0.67
+   ],
+   "critic.forward.23": [
+    "FSDP::pre_forward (blocks.24)",
+    0.69
+   ],
+   "critic.forward.24": [
+    "FSDP::pre_forward (blocks.25)",
+    0.69
+   ],
+   "critic.forward.25": [
+    "FSDP::pre_forward (blocks.26)",
+    0.68
+   ],
+   "critic.forward.26": [
+    "FSDP::pre_forward (blocks.27)",
+    0.67
+   ],
+   "critic.forward.27": [
+    "FSDP::pre_forward (blocks.28)",
+    0.67
+   ],
+   "critic.forward.28": [
+    "FSDP::pre_forward (blocks.29)",
+    0.67
+   ],
+   "critic.forward.29": [
+    "cudaLaunchKernel",
+    0.3
+   ],
+   "critic.backward.29": [
+    "FSDP::post_backward_reduce (blocks.29)",
+    0.76
+   ],
+   "critic.backward.28": [
+    "FSDP::post_backward_reduce (blocks.28)",
+    0.77
+   ],
+   "critic.backward.27": [
+    "FSDP::post_backward_reduce (blocks.27)",
+    0.77
+   ],
+   "critic.backward.26": [
+    "FSDP::post_backward_reduce (blocks.26)",
+    0.77
+   ],
+   "critic.backward.25": [
+    "FSDP::post_backward_reduce (blocks.25)",
+    0.88
+   ],
+   "critic.backward.24": [
+    "FSDP::post_backward_reduce (blocks.24)",
+    0.76
+   ],
+   "critic.backward.23": [
+    "FSDP::post_backward_reduce (blocks.23)",
+    0.75
+   ],
+   "critic.backward.22": [
+    "FSDP::post_backward_reduce (blocks.22)",
+    0.77
+   ],
+   "critic.backward.21": [
+    "FSDP::post_backward_reduce (blocks.21)",
+    0.77
+   ],
+   "critic.backward.20": [
+    "FSDP::post_backward_reduce (blocks.20)",
+    0.76
+   ],
+   "critic.backward.19": [
+    "FSDP::post_backward_reduce (blocks.19)",
+    0.75
+   ],
+   "critic.backward.18": [
+    "FSDP::post_backward_reduce (blocks.18)",
+    0.76
+   ],
+   "critic.backward.17": [
+    "FSDP::post_backward_reduce (blocks.17)",
+    0.75
+   ],
+   "critic.backward.16": [
+    "FSDP::post_backward_reduce (blocks.16)",
+    0.76
+   ],
+   "critic.backward.15": [
+    "FSDP::post_backward_reduce (blocks.15)",
+    0.77
+   ],
+   "critic.backward.14": [
+    "FSDP::post_backward_reduce (blocks.14)",
+    0.76
+   ],
+   "critic.backward.13": [
+    "FSDP::post_backward_reduce (blocks.13)",
+    0.77
+   ],
+   "critic.backward.12": [
+    "FSDP::post_backward_reduce (blocks.12)",
+    0.75
+   ],
+   "critic.backward.11": [
+    "FSDP::post_backward_reduce (blocks.11)",
+    0.76
+   ],
+   "critic.backward.10": [
+    "FSDP::post_backward_reduce (blocks.10)",
+    0.76
+   ],
+   "critic.backward.9": [
+    "FSDP::post_backward_reduce (blocks.9)",
+    0.76
+   ],
+   "critic.backward.8": [
+    "FSDP::post_backward_reduce (blocks.8)",
+    0.82
+   ],
+   "critic.backward.7": [
+    "FSDP::post_backward_reduce (blocks.7)",
+    0.77
+   ],
+   "critic.backward.6": [
+    "FSDP::post_backward_reduce (blocks.6)",
+    0.76
+   ],
+   "critic.backward.5": [
+    "FSDP::post_backward_reduce (blocks.5)",
+    0.76
+   ],
+   "critic.backward.4": [
+    "FSDP::post_backward_reduce (blocks.4)",
+    0.76
+   ],
+   "critic.backward.3": [
+    "FSDP::post_backward_reduce (blocks.3)",
+    0.75
+   ],
+   "critic.backward.2": [
+    "FSDP::post_backward_reduce (blocks.2)",
+    0.77
+   ],
+   "critic.backward.1": [
+    "FSDP::post_backward_reduce (blocks.1)",
+    0.76
+   ],
+   "clipping": [
+    "aten::mul_",
+    61.61
+   ],
+   "optimizer.critic": [
+    "Optimizer.step#AdamW.step",
+    12.53
+   ],
+   "optimizer.student": [
+    "Optimizer.step#AdamW.step",
+    12.49
+   ]
+  },
+  "step_ms": 20574.8
+ }
+]

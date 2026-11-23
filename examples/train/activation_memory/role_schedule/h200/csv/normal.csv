@@ -1,0 +1,17 @@
+layout,round,sched,mean_step_ms,n_steps,peak_alloc_gib,peak_reserved_gib,first_loss,file
+L1,1,A,1066.06,10,53.514,66.141,0.887048,raw/normal/L1_r1_A.json
+L1,1,B,1082.77,10,53.413,59.143,0.852104,raw/normal/L1_r1_B.json
+L1,2,A,1082.6,10,53.514,66.141,0.897895,raw/normal/L1_r2_A.json
+L1,2,B,1153.86,10,53.413,59.143,0.917289,raw/normal/L1_r2_B.json
+L1,3,A,1098.96,10,53.514,66.141,0.876098,raw/normal/L1_r3_A.json
+L1,3,B,1162.42,10,53.413,59.143,0.864997,raw/normal/L1_r3_B.json
+L1,4,A,1132.56,10,53.514,66.141,0.881652,raw/normal/L1_r4_A.json
+L1,4,B,1162.54,10,53.413,59.143,0.90026,raw/normal/L1_r4_B.json
+L2,1,A,1068.87,10,53.514,66.16,0.878349,raw/normal/L2_r1_A.json
+L2,1,B,1061.99,10,53.414,59.16,0.87151,raw/normal/L2_r1_B.json
+L2,2,A,1083.14,10,53.514,66.16,0.896404,raw/normal/L2_r2_A.json
+L2,2,B,1068.37,10,53.414,59.16,0.915722,raw/normal/L2_r2_B.json
+L2,3,A,1095.3,10,53.514,66.16,0.914527,raw/normal/L2_r3_A.json
+L2,3,B,1147.14,10,53.414,59.16,0.890819,raw/normal/L2_r3_B.json
+L2,4,A,1105.06,10,53.514,66.16,0.925106,raw/normal/L2_r4_A.json
+L2,4,B,1064.49,10,53.414,59.16,0.891169,raw/normal/L2_r4_B.json

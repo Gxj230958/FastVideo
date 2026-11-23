@@ -1,0 +1,71 @@
+INFO 11-23 13:11:14.421 [__init__.py:47] CUDA is available
+INFO 11-23 13:11:16.697 [parallel_state.py:955] Initializing distributed environment with world_size=1, device=cuda:0
+INFO 11-23 13:11:16.697 [parallel_state.py:755] Using nccl backend for CUDA platform
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+INFO 11-23 13:11:16.779 [utils.py:544] Model already exists locally at /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers
+INFO 11-23 13:11:16.780 [utils.py:696] Diffusers version: 0.33.0.dev0
+INFO 11-23 13:11:16.780 [component_loader.py:1714] Loading transformer using diffusers from /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer
+INFO 11-23 13:11:16.780 [component_loader.py:1278] transformer cls_name: WanTransformer3DModel
+INFO 11-23 13:11:16.780 [component_loader.py:1281] Overriding transformer cls_name to WanTransformer3DModel
+INFO 11-23 13:11:16.781 [component_loader.py:1345] Loading model from 2 safetensors files: ['/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00002-of-00002.safetensors', '/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00001-of-00002.safetensors']
+INFO 11-23 13:11:16.781 [component_loader.py:1354] Loading model from WanTransformer3DModel, default_dtype: torch.float32
+INFO 11-23 13:11:16.781 [component_loader.py:1378] Worker 0 transformer attention backend: TORCH_SDPA
+INFO 11-23 13:11:16.781 [fsdp_load.py:413] Loading model with default_dtype: torch.float32
+INFO 11-23 13:11:16.783 [cuda.py:174] Trying FASTVIDEO_ATTENTION_BACKEND=None
+INFO 11-23 13:11:16.783 [cuda.py:175] Selected backend: AttentionBackendEnum.TORCH_SDPA
+INFO 11-23 13:11:16.784 [cuda.py:300] Using Torch SDPA backend.
+INFO 11-23 13:11:16.784 [cuda.py:174] Trying FASTVIDEO_ATTENTION_BACKEND=None
+INFO 11-23 13:11:16.785 [cuda.py:175] Selected backend: AttentionBackendEnum.TORCH_SDPA
+INFO 11-23 13:11:16.785 [cuda.py:300] Using Torch SDPA backend.
+INFO 11-23 13:11:17.310 [fsdp_load.py:497] Loading transformer weights with to_cpu=False
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  2.32it/s]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:03<00:00,  1.82s/it]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:03<00:00,  1.61s/it]
+
+INFO 11-23 13:11:21.150 [component_loader.py:1436] Loaded model with 1.42B parameters
+INFO 11-23 13:11:21.159 [utils.py:544] Model already exists locally at /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers
+INFO 11-23 13:11:21.160 [utils.py:696] Diffusers version: 0.33.0.dev0
+INFO 11-23 13:11:21.160 [component_loader.py:1714] Loading transformer using diffusers from /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer
+INFO 11-23 13:11:21.160 [component_loader.py:1278] transformer cls_name: WanTransformer3DModel
+INFO 11-23 13:11:21.160 [component_loader.py:1281] Overriding transformer cls_name to WanTransformer3DModel
+INFO 11-23 13:11:21.160 [component_loader.py:1345] Loading model from 2 safetensors files: ['/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00002-of-00002.safetensors', '/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00001-of-00002.safetensors']
+INFO 11-23 13:11:21.161 [component_loader.py:1354] Loading model from WanTransformer3DModel, default_dtype: torch.float32
+INFO 11-23 13:11:21.162 [component_loader.py:1378] Worker 0 transformer attention backend: TORCH_SDPA
+INFO 11-23 13:11:21.162 [fsdp_load.py:413] Loading model with default_dtype: torch.float32
+INFO 11-23 13:11:21.427 [fsdp_load.py:497] Loading transformer weights with to_cpu=False
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  2.61it/s]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:03<00:00,  1.78s/it]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:03<00:00,  1.57s/it]
+
+INFO 11-23 13:11:24.856 [component_loader.py:1436] Loaded model with 1.42B parameters
+INFO 11-23 13:11:24.864 [utils.py:544] Model already exists locally at /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers
+INFO 11-23 13:11:24.865 [utils.py:696] Diffusers version: 0.33.0.dev0
+INFO 11-23 13:11:24.865 [component_loader.py:1714] Loading transformer using diffusers from /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer
+INFO 11-23 13:11:24.865 [component_loader.py:1278] transformer cls_name: WanTransformer3DModel
+INFO 11-23 13:11:24.865 [component_loader.py:1281] Overriding transformer cls_name to WanTransformer3DModel
+INFO 11-23 13:11:24.865 [component_loader.py:1345] Loading model from 2 safetensors files: ['/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00002-of-00002.safetensors', '/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00001-of-00002.safetensors']
+INFO 11-23 13:11:24.865 [component_loader.py:1354] Loading model from WanTransformer3DModel, default_dtype: torch.float32
+INFO 11-23 13:11:24.866 [component_loader.py:1378] Worker 0 transformer attention backend: TORCH_SDPA
+INFO 11-23 13:11:24.866 [fsdp_load.py:413] Loading model with default_dtype: torch.float32
+INFO 11-23 13:11:25.125 [fsdp_load.py:497] Loading transformer weights with to_cpu=False
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  2.63it/s]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:03<00:00,  1.79s/it]
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:03<00:00,  1.58s/it]
+
+INFO 11-23 13:11:28.577 [component_loader.py:1436] Loaded model with 1.42B parameters
+INFO 11-23 13:11:28.587 [utils.py:544] Model already exists locally at /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers
+INFO 11-23 13:11:28.587 [utils.py:696] Diffusers version: 0.33.0.dev0
+INFO 11-23 13:11:28.587 [component_loader.py:1714] Loading vae using diffusers from /inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers/vae
+INFO 11-23 13:11:29.214 [parquet_dataset_map_style.py:1247] Initializing LatentsParquetMapStyleDataset with path: /inspire/hdd/global_user/s26045/fastvideo/h200_stall_results/inputs/hiker_parquet
+INFO 11-23 13:11:29.214 [parquet_dataset_map_style.py:1064] Loading cached file info from /inspire/hdd/global_user/s26045/fastvideo/h200_stall_results/inputs/hiker_parquet/map_style_cache/file_info.pkl
+INFO 11-23 13:11:29.214 [parquet_dataset_map_style.py:1094] Successfully loaded cached file info
+INFO 11-23 13:11:29.214 [parquet_dataset_map_style.py:1132] Loading cached file info from /inspire/hdd/global_user/s26045/fastvideo/h200_stall_results/inputs/hiker_parquet/map_style_cache/file_info.pkl after barrier
+INFO 11-23 13:11:29.215 [parquet_dataset_map_style.py:105] Dataset size for each sp group: 8
+INFO 11-23 13:11:29.215 [parquet_dataset_map_style.py:1324] Dataset initialized with 1 parquet files and 8 rows

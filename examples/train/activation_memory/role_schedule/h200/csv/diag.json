@@ -1,0 +1,86 @@
+[
+ {
+  "run": "L1_A_alloc",
+  "steps": 5,
+  "steps_with_retry": 0,
+  "whole_step_retries": 0,
+  "window_retries": {
+   "critic.forward.18": 0,
+   "critic.backward.21": 0,
+   "critic.backward.20": 0
+  },
+  "window_host_ms_mean": {
+   "critic.forward.18": 3.17,
+   "critic.backward.21": 5.07,
+   "critic.backward.20": 5.11
+  },
+  "window_freed_gib": {
+   "critic.forward.18": 0.0,
+   "critic.backward.21": 0.0,
+   "critic.backward.20": 0.0
+  }
+ },
+ {
+  "run": "L1_B_alloc",
+  "steps": 5,
+  "steps_with_retry": 0,
+  "whole_step_retries": 0,
+  "window_retries": {
+   "critic.forward.18": 0,
+   "critic.backward.21": 0,
+   "critic.backward.20": 0
+  },
+  "window_host_ms_mean": {
+   "critic.forward.18": 2.99,
+   "critic.backward.21": 5.04,
+   "critic.backward.20": 4.96
+  },
+  "window_freed_gib": {
+   "critic.forward.18": 0.0,
+   "critic.backward.21": 0.0,
+   "critic.backward.20": 0.0
+  }
+ },
+ {
+  "run": "L2_A_alloc",
+  "steps": 5,
+  "steps_with_retry": 0,
+  "whole_step_retries": 0,
+  "window_retries": {
+   "critic.forward.18": 0,
+   "critic.backward.21": 0,
+   "critic.backward.20": 0
+  },
+  "window_host_ms_mean": {
+   "critic.forward.18": 3.14,
+   "critic.backward.21": 5.63,
+   "critic.backward.20": 5.58
+  },
+  "window_freed_gib": {
+   "critic.forward.18": 0.0,
+   "critic.backward.21": 0.0,
+   "critic.backward.20": 0.0
+  }
+ },
+ {
+  "run": "L2_B_alloc",
+  "steps": 5,
+  "steps_with_retry": 0,
+  "whole_step_retries": 0,
+  "window_retries": {
+   "critic.forward.18": 0,
+   "critic.backward.21": 0,
+   "critic.backward.20": 0
+  },
+  "window_host_ms_mean": {
+   "critic.forward.18": 3.07,
+   "critic.backward.21": 5.07,
+   "critic.backward.20": 4.96
+  },
+  "window_freed_gib": {
+   "critic.forward.18": 0.0,
+   "critic.backward.21": 0.0,
+   "critic.backward.20": 0.0
+  }
+ }
+]
