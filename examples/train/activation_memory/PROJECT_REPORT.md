@@ -2,7 +2,7 @@
 
 The same **53.142 GiB** peak allocation produced **2.80 s** and **1.29 s** mean updates in Wan2.1-1.3B DMD2 training on Ascend 910B2C. A model of activation lifetimes found layouts within budget. Timing a shortlist delivered a **2.16× speedup** against the additive solver, and a targeted synchronization experiment explained the gap. Draining queued device work before a slow critic interval took less than a millisecond. The following allocation still stalled, and independent allocator counters showed repeated cache flushes releasing about **10.6 GiB** at one forward boundary. On NVIDIA H200, device-local calibration met all three tested allocated-memory budgets.
 
-The planner and shortlist are separate FastVideo contributions. The intervention study and measurements are available in this research branch. [Planner PR #2055](https://github.com/hao-ai-lab/FastVideo/pull/2055) · [Selector PR #2120](https://github.com/hao-ai-lab/FastVideo/pull/2120) · [Reproduction and raw measurements](stall_study/)
+In a prospective test on two clips, a two-block edit removed a known local retry while leaving the whole update at two retries. The late edit beat the early edit by 40–49 ms on average. The planner and shortlist are separate FastVideo contributions. The intervention study and measurements are available in this research branch. [Planner PR #2055](https://github.com/hao-ai-lab/FastVideo/pull/2055) · [Selector PR #2120](https://github.com/hao-ai-lab/FastVideo/pull/2120) · [Reproduction and raw measurements](stall_study/)
 
 ## What the planner measures
 
@@ -76,6 +76,59 @@ On three additional cards we sampled cumulative allocator counters immediately b
 
 In each clip, one backward retry landed one block early and one update had no retry in either monitored backward window. The device-stream markers, targeted synchronization and allocator counters together identify repeated reserve reclamation in the slow layout. Timing candidates end to end lets the selector avoid the measured cost without having to predict exactly which backward hook will observe it.
 
+## Predicting the effect of a one-block edit
+
+### Discovery on Hiker
+
+We held all 30 student policies fixed at the original solver map and changed only which critic blocks were recomputed. The primary comparison paired block 12 (A1) against block 24 (B1). Both layouts save 29 critic blocks and have the same predicted peak of 53.597 GiB. The lifetime model predicts that editing block 12 removes 0.295 GiB of live activations at critic forward 18. Editing block 24 leaves its predicted occupancy unchanged at 50.475 GiB. The prediction, recorded before any of these timings, was fewer retries at forward 18 for A1. [Discovery prediction and exact maps](minimal_layout_edits/)
+
+Across discovery, retry mapping and validation, 81 completed processes supplied 180 timing updates and 225 counter updates. Each of three physical Ascend 910B2Cs ran every layout in rotated order. Each condition used a fresh, seeded, single-rank process with five warmups and five measured updates. Separate processes counted retries at the three original windows and across the entire synchronized update. The difference between those counts reveals retries outside the windows. The speed measurement uses the ordinary training path.
+
+A1 removed the forward-18 retry in all 15 measured counter updates. B1 retained one in all 15. Every A1 and B1 update still retried twice overall, exactly as the concurrent solver did. A1 averaged 2831.08 ms, B1 2797.09 ms and the solver 2772.17 ms. Whole-update cumulative reserve released averaged 20.628 GiB for A1. Over the same interval its mean net change in reserve was −0.017 GiB. An allocator can release and acquire substantial storage while ending a step with almost the same reserve.
+
+The two-block pair repeated the result. A2 recomputed blocks 11 and 12, lowering predicted forward-18 occupancy by 0.589 GiB. B2 recomputed 24 and 25. A2 moved all forward-18 retries out of that window. Both layouts retried twice per update. The existing 24+16 shortlist reference recorded zero whole-update retries and averaged 1292.97 ms in this experiment.
+
+| Sample and layout | Update (ms) | Peak allocated / reserved (GiB) | Forward 18 | Backward 20 + 21 | Elsewhere | Whole update |
+|---|---:|---:|---:|---:|---:|---:|
+| Hiker, solver | 2772.17 | 53.142 / 60.352 | 1.00 | 0.93 | 0.07 | 2.00 |
+| Hiker, A1 | 2831.08 | 53.142 / 60.369 | 0.00 | 0.00 | 2.00 | 2.00 |
+| Hiker, B1 | 2797.09 | 53.142 / 60.352 | 1.00 | 0.00 | 1.00 | 2.00 |
+| Hiker, A2 | 2856.50 | 53.142 / 60.369 | 0.00 | 0.00 | 2.00 | 2.00 |
+| Hiker, B2 | 2817.02 | 53.142 / 60.352 | 1.00 | 0.00 | 1.00 | 2.00 |
+| Hiker, selected | 1292.97 | 53.142 / 60.072 | 0.00 | 0.00 | 0.00 | 0.00 |
+
+*Retry columns give mean counts per update across three five-step counter processes. Times come from three separate five-step timing processes. Peak values are maxima. The selected reference uses the earlier shortlist's complete 24+16 map.*
+
+Where did the missing retries go? An additional set of processes read counters at every observed role transition on Hiker. In all 15 A1 updates the forward retry moved from critic block 18 to 19. In B1 it stayed at 18. Both edits moved the backward retry from block 20 to block 18 (14 updates) or block 19 (one update). Every mapped retry reconciled with the whole-update counter. This supplies a direct example of an edit moving the slow operation one block downstream. [Retry locations by update](minimal_layout_edits/evidence/migration.csv)
+
+### Prospective validation on new block positions
+
+The one-block edit had removed the targeted retry but had failed the whole-step criterion, so we evaluated the two-block rule at unused positions. Before running either clip, we published three predictions for the solver, the early edit Ap2 (blocks 9 and 10) and the late edit Bp2 (26 and 27). The early edit would be the only one with zero forward-18 retries, all three would retain two whole-step retries, and mean times would increase from solver to Bp2 to Ap2. The local memory prediction followed from activation lifetimes. The timing order came from discovery measurements. Hiker tests new positions, while Cosmos repeats the same layouts on a second clip used in earlier shortlist tuning. [Timestamped prediction](https://github.com/Gxj230958/FastVideo/blob/762d9447b329d827288417cafb8160613bd28932/examples/train/activation_memory/minimal_layout_edits/prediction.json)
+
+Both clips reproduced the three predicted mean retry counts and the prespecified mean timing order. Ap2 was 40.08 ms slower than Bp2 on Hiker and 48.94 ms slower on Cosmos. Five of six within-card comparisons favored the late edit. On Hiker card 2 the early edit was 3.14 ms faster. The prospective result discriminated between two new block maps, but neither beat its concurrent solver baseline. The 2.16× gain elsewhere in this report is specific to the earlier end-to-end shortlist selection.
+
+| Sample and layout | Update (ms) | Peak allocated / reserved (GiB) | Forward 18 | Backward 20 + 21 | Elsewhere | Whole update |
+|---|---:|---:|---:|---:|---:|---:|
+| Hiker, solver | 2788.42 | 53.142 / 60.352 | 1.00 | 1.00 | 0.00 | 2.00 |
+| Hiker, Ap2 | 2868.76 | 53.142 / 60.352 | 0.00 | 0.00 | 2.00 | 2.00 |
+| Hiker, Bp2 | 2828.69 | 53.142 / 60.352 | 1.00 | 0.00 | 1.00 | 2.00 |
+| Cosmos, solver | 2776.66 | 53.142 / 60.369 | 1.00 | 1.00 | 0.00 | 2.00 |
+| Cosmos, Ap2 | 2858.49 | 53.142 / 60.369 | 0.00 | 0.00 | 2.00 | 2.00 |
+| Cosmos, Bp2 | 2809.55 | 53.142 / 60.369 | 1.00 | 0.00 | 1.00 | 2.00 |
+
+| Stage and clip | Pair | A−B by card 0 / 1 / 2 (ms) | A / solver by card | B / solver by card |
+|---|---|---:|---:|---:|
+| Single, Hiker | A1/B1 | +55.6 / +32.8 / +13.6 | 1.028 / 1.019 / 1.016 | 1.008 / 1.007 / 1.011 |
+| Double, Hiker | A2/B2 | +38.9 / +42.4 / +37.2 | 1.031 / 1.033 / 1.026 | 1.018 / 1.018 / 1.013 |
+| Validation, Hiker | Ap2/Bp2 | +50.5 / +72.8 / -3.1 | 1.022 / 1.037 / 1.028 | 1.004 / 1.011 / 1.029 |
+| Validation, Cosmos | Ap2/Bp2 | +58.3 / +50.0 / +38.5 | 1.036 / 1.026 / 1.026 | 1.015 / 1.008 / 1.012 |
+
+*Each ratio divides the edited layout's mean time by the solver mean on the same card and clip. The double-edit discovery pair uses the solver from the single-edit discovery batch. Both validation samples have a new solver baseline.*
+
+![Paired complete update times, retry locations and allocated peaks for discovery and prospective validation](minimal_layout_edits/evidence/paired_layouts.svg)
+
+*Left panels show one five-update process mean per marker. Lines connect early and late edits on the same card. Each row has its own time scale. Right panels stack mean retry counts so that the full bar is the whole-step count. Numerical labels above the bars give the measured allocated peak in GiB. [Per-update data, exact layouts and reproduction](minimal_layout_edits/)*
+
 ## Budget feasibility on H200
 
 H200 profiles were collected for each workload and input shape using PyTorch 2.9.1+cu128. The table gives the predicted peak of each solver plan and the observed maxima across five timed updates. All three measured allocations fell within budget. The narrowest observed margin was 0.334 GiB for 33-frame single-role training. [Profiles, plans and measurements](https://github.com/Gxj230958/FastVideo/tree/125aae85a57a083979ac357e49fad3dd21705054/meas_h200)
@@ -106,3 +159,4 @@ The memory constraints transferred through device-local calibration. Layout timi
 - **Timing scope.** Each H200 configuration contributed one process with five sequential updates. Different warmups place the solver and fixed layouts at different training iterations. Ascend used torch-npu 2.9 with expandable segments, whereas H200 used the default CUDA allocator. The 17-frame H200 sample was robot and the Ascend validation sample was hiker. The means describe these runs and cannot isolate a hardware-only speedup or establish a reliably fastest H200 layout.
 - **Data and calibration.** The 33-frame H200 sample repeats nine Cosmos source frames. DMD2 parquet rows reuse one source video. These runs exercise training and memory behavior, with no measure of downstream video quality. The DMD2 fixed-memory residual comes from its own 127-event all-recompute observation. Two 62-event references and the incremental calibration metadata in the H200 DMD2 profile were inherited from its single-role template.
 - **Mechanism scope.** Event boundaries include adjacent FSDP work. Stream markers bound one stream and cannot establish device-wide idleness. A pre-entry barrier tests work already submitted at that boundary. Work submitted inside the interval, driver mapping costs and release costs can all contribute. The counters identify retry and reclamation but do not measure fragmentation or apportion time among allocator internals. The Cosmos check reuses an earlier tuning clip with a frozen intervention, so the two clips establish repeatability at this shape.
+- **Edit scope.** The small-edit study holds the original student map fixed. Its paired tests cover particular critic positions at one and two edits. They do not establish a minimum edit distance to a faster layout, or a ranking for other shapes, allocators or devices.

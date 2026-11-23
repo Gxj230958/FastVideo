@@ -8,7 +8,7 @@ latents with public UMT5 text conditions. Single-role updates minimize
 flow-matching MSE at timestep 500 using a fixed noisy input and target; DMD2
 uses the production method's seeded noise and timestep sampling.
 
-For the measured Ascend and H200 layouts, see the [project report](PROJECT_REPORT.md). The [synchronization and allocator study](stall_study/) includes exact block maps and per-step observations.
+For the measured Ascend and H200 layouts, see the [project report](PROJECT_REPORT.md). The [synchronization and allocator study](stall_study/) includes exact block maps and per-step observations. The [paired critic-edit experiment](minimal_layout_edits/) tests prospective layout rankings and whole-update retry migration.
 
 Use a local copy of `Wan-AI/Wan2.1-T2V-1.3B-Diffusers`, an idle accelerator,
 and its matching PyTorch runtime (CUDA or CANN/torch-npu). The sample encoder additionally uses Diffusers,

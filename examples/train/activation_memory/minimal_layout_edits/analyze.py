@@ -93,7 +93,7 @@ def comparisons(means):
         if r['stage'] == 'migration' or not r['layout'].startswith('A'):
             continue
         sample, stage = r['sample'], r['stage']
-        peers = {m['layout']: m for m in means if m['sample'] == sample and m['card'] == r['card']
+        peers = {m['layout']: m for m in means if m['sample'] == sample and m['card'] == r['card'] and m['block'] == r['block']
                  and (m['stage'] == stage or (stage == 'double' and m['layout'] == 'solver' and m['stage'] == 'single'))}
         b, solver = peers['B' + r['layout'][1:]], peers['solver']
         result.append(dict(stage=stage, sample=sample, card=r['card'], pair=r['layout'] + '/' + b['layout'],
@@ -119,9 +119,16 @@ def figure(means, output):
         names = [l for l in ORDER if any(r['layout'] == l for r in group)]
         for block, marker in enumerate(('o', 's', '^')):
             values = [next(r for r in group if r['block'] == block and r['layout'] == n)['mean_ms'] for n in names]
-            timing.scatter([i + (block - 1) * .12 for i in range(len(names))], [v / 1000 for v in values],
-                           marker=marker, color='#275775', s=24, label=f'Card {block}')
-        timing.set(ylabel='Complete update (s)', title=title, ylim=(0, None), xticks=range(len(names)), xticklabels=names)
+            positions = [i + (block - 1) * .12 for i in range(len(names))]
+            for i, name in enumerate(names):
+                if name.startswith('A'):
+                    timing.plot(positions[i:i + 2], [v / 1000 for v in values[i:i + 2]], color='#9eb0b9',
+                                linewidth=.7, zorder=1)
+            timing.scatter(positions, [v / 1000 for v in values],
+                           marker=marker, color='#275775', s=24, label=f'Pair {block + 1}')
+        observed = [r['mean_ms'] / 1000 for r in group]
+        timing.set(ylabel='Complete update (s)', title=title, ylim=(min(observed) - .16, max(observed) + .10),
+                   xticks=range(len(names)), xticklabels=names)
         bottom = [0.] * len(names)
         for k, label, color in [('f18', 'Forward 18', '#b45c42'), ('b20', 'Backward 20', '#417c96'),
                                 ('b21', 'Backward 21', '#8eb4bf'), ('elsewhere', 'Outside all three', '#bbb6ad')]:
@@ -131,7 +138,7 @@ def figure(means, output):
         for i,n in enumerate(names):
             v = max(r['allocated_gib'] for r in group if r['layout'] == n)
             retries.text(i, bottom[i] + .04, f'{v:.3f}', ha='center', va='bottom', fontsize=8)
-        retries.set(ylabel='Retries per update', title='Whole-step retries by location', ylim=(0, max(bottom) + .5))
+        retries.set(ylabel='Retries per update', title='Retries by location · labels give peak allocated GiB', ylim=(0, max(bottom) + .5))
         for ax in (timing, retries):
             ax.grid(axis='y', alpha=.18)
             ax.set_axisbelow(True)
