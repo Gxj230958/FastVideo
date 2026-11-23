@@ -93,7 +93,7 @@ def plot_steps(rows, folder):
             for r in values:
                 block = r['block']
                 ax.scatter(i + (block - 1) * 0.11, r['step_ms'] / 1000, color='#356887', marker=('o', 's', '^')[block],
-                           zorder=3, label=f"Block {block}" if i == 0 else None)
+                           zorder=3, label=f"Repeat {block + 1}" if i == 0 else None)
         ax.set(xticks=range(len(layouts)), xticklabels=[LABELS[l].replace(' ', '\n') for l in layouts],
                title=sample.capitalize(), xlim=(-0.5, len(layouts) - 0.5), ylim=(0, None))
         ax.grid(axis='y', alpha=0.2)

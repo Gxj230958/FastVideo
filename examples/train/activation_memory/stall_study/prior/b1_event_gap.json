@@ -1,0 +1,4966 @@
+{
+  "sources": [
+    "trace_auto.json",
+    "trace_manual.json",
+    "coarse_auto.json",
+    "coarse_manual.json",
+    "coarse_auto.plan.json"
+  ],
+  "allocation": "The fit identifies whole-step costs only. Split block increments by the matching manual forward/backward stream duration; distribute fixed_step_ms proportional to nonnegative residual manual intervals. Paired deltas do not depend on this allocation.",
+  "gap_pct_denominator": "measured_ms",
+  "coarse_manual_ms": {
+    "train": 655.5164593737572,
+    "backward": 472.4015544168651,
+    "update": 287.4679571483284
+  },
+  "coarse_auto_ms": {
+    "train": 1390.6281114555895,
+    "backward": 1108.589256182313,
+    "update": 288.25364019721746
+  },
+  "rows": [
+    {
+      "event": "setup",
+      "additive_ms": 24.713504567241042,
+      "measured_ms": 27.3885498046875,
+      "gap_ms": 2.675045237446458,
+      "gap_pct": 9.767020366257686,
+      "manual_ms": 27.754470825195312,
+      "paired_delta_ms": -0.3659210205078125,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+            8.604274000000004
+          ],
+          [
+            "aten::_pin_memory",
+            3.6529229999999986
+          ],
+          [
+            "Optimizer.zero_grad#AdamW.zero_grad",
+            3.0928400000000007
+          ]
+        ],
+        [
+          [
+            "enumerate(DataLoader)#_StatefulSingleProcessDataLoaderIter.__next__",
+            13.49675699999999
+          ],
+          [
+            "Optimizer.zero_grad#AdamW.zero_grad",
+            10.817710999999996
+          ],
+          [
+            "aten::_pin_memory",
+            2.934558000000005
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.0",
+      "additive_ms": 6.674702426940586,
+      "measured_ms": 9.479529619216919,
+      "gap_ms": 2.804827192276333,
+      "gap_pct": 29.5882528452718,
+      "manual_ms": 10.192480087280273,
+      "paired_delta_ms": -0.7129504680633545,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::copy_",
+            1.6573480000000234
+          ],
+          [
+            "FSDP::pre_forward (blocks.0)",
+            0.7529070000000029
+          ],
+          [
+            "FSDP::pre_forward (blocks.1)",
+            0.6927829999999885
+          ]
+        ],
+        [
+          [
+            "aten::copy_",
+            1.8621759999999852
+          ],
+          [
+            "FSDP::pre_forward (blocks.0)",
+            0.8781459999999933
+          ],
+          [
+            "FSDP::pre_forward (blocks.1)",
+            0.7313169999999737
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.1",
+      "additive_ms": 3.5419120238419755,
+      "measured_ms": 3.851659893989563,
+      "gap_ms": 0.30974787014758753,
+      "gap_pct": 8.041932015621182,
+      "manual_ms": 3.977739930152893,
+      "paired_delta_ms": -0.12608003616333008,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.2)",
+            0.6828929999999891
+          ],
+          [
+            "empty_tensor",
+            0.28279700000001695
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.2162589999999982
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.2)",
+            0.7111290000000299
+          ],
+          [
+            "empty_tensor",
+            0.3215840000000389
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.22842799999999264
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.2",
+      "additive_ms": 4.384004913632063,
+      "measured_ms": 4.967309951782227,
+      "gap_ms": 0.5833050381501632,
+      "gap_pct": 11.74287579821506,
+      "manual_ms": 4.698379993438721,
+      "paired_delta_ms": 0.26892995834350586,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.3)",
+            0.6642409999999727
+          ],
+          [
+            "empty_tensor",
+            0.26333699999999954
+          ],
+          [
+            "aten::mul",
+            0.22648099999997795
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.3)",
+            0.7101900000000169
+          ],
+          [
+            "empty_tensor",
+            0.30069400000002505
+          ],
+          [
+            "aten::mul",
+            0.25420200000000476
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.3",
+      "additive_ms": 3.41432180058068,
+      "measured_ms": 3.8681600093841553,
+      "gap_ms": 0.45383820880347514,
+      "gap_pct": 11.732663791116803,
+      "manual_ms": 3.834449887275696,
+      "paired_delta_ms": 0.03371012210845947,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.4)",
+            0.7666040000000285
+          ],
+          [
+            "empty_tensor",
+            0.26853900000003345
+          ],
+          [
+            "aten::copy_",
+            0.21052900000003139
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.4)",
+            0.7267579999999434
+          ],
+          [
+            "empty_tensor",
+            0.3145909999999641
+          ],
+          [
+            "aten::copy_",
+            0.21586100000001174
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.4",
+      "additive_ms": 4.406480203799151,
+      "measured_ms": 4.707809925079346,
+      "gap_ms": 0.30132972128019464,
+      "gap_pct": 6.400634819068571,
+      "manual_ms": 4.722859859466553,
+      "paired_delta_ms": -0.015049934387207031,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.5)",
+            0.6574639999999781
+          ],
+          [
+            "aten::addmm",
+            0.29289200000002164
+          ],
+          [
+            "empty_tensor",
+            0.2639400000000096
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.5)",
+            0.6981739999999917
+          ],
+          [
+            "aten::addmm",
+            0.31516500000003
+          ],
+          [
+            "empty_tensor",
+            0.28847899999994847
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.5",
+      "additive_ms": 3.3410036283945876,
+      "measured_ms": 3.7545899152755737,
+      "gap_ms": 0.4135862868809861,
+      "gap_pct": 11.015484945461221,
+      "manual_ms": 3.752110004425049,
+      "paired_delta_ms": 0.0024799108505249023,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.6)",
+            0.6496319999999541
+          ],
+          [
+            "empty_tensor",
+            0.2709650000000694
+          ],
+          [
+            "aten::copy_",
+            0.19832000000002156
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.6)",
+            0.6968879999999336
+          ],
+          [
+            "empty_tensor",
+            0.29429200000013245
+          ],
+          [
+            "aten::copy_",
+            0.20650000000001456
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.6",
+      "additive_ms": 4.597308058521287,
+      "measured_ms": 5.580269813537598,
+      "gap_ms": 0.9829617550163103,
+      "gap_pct": 17.614950313543428,
+      "manual_ms": 4.930429935455322,
+      "paired_delta_ms": 0.6498398780822754,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.7)",
+            0.6643280000000014
+          ],
+          [
+            "empty_tensor",
+            0.26000399999994267
+          ],
+          [
+            "aten::mul",
+            0.2236030000000028
+          ]
+        ],
+        [
+          [
+            "aten::addmm",
+            2.066839000000051
+          ],
+          [
+            "FSDP::pre_forward (blocks.7)",
+            0.701661999999982
+          ],
+          [
+            "empty_tensor",
+            0.2935010000000185
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.7",
+      "additive_ms": 5.324522641460479,
+      "measured_ms": 4.757920026779175,
+      "gap_ms": -0.5666026146813046,
+      "gap_pct": -11.908619974532451,
+      "manual_ms": 3.78889000415802,
+      "paired_delta_ms": 0.9690300226211548,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.8)",
+            0.6540910000000149
+          ],
+          [
+            "empty_tensor",
+            0.2647180000000299
+          ],
+          [
+            "aten::mul",
+            0.23188900000000282
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.8)",
+            0.6793809999999794
+          ],
+          [
+            "empty_tensor",
+            0.28937499999998545
+          ],
+          [
+            "aten::mul",
+            0.251775999999998
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.8",
+      "additive_ms": 2.6208406485663,
+      "measured_ms": 3.801680088043213,
+      "gap_ms": 1.1808394394769128,
+      "gap_pct": 31.060989145057448,
+      "manual_ms": 4.796859979629517,
+      "paired_delta_ms": -0.9951798915863037,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.9)",
+            0.6416070000000109
+          ],
+          [
+            "empty_tensor",
+            0.27657400000002225
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.2139560000000128
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.9)",
+            0.7780510000000067
+          ],
+          [
+            "empty_tensor",
+            0.3088499999999912
+          ],
+          [
+            "aten::copy_",
+            0.21306099999998693
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.9",
+      "additive_ms": 3.364555622520225,
+      "measured_ms": 3.7246299982070923,
+      "gap_ms": 0.3600743756868674,
+      "gap_pct": 9.667386448055101,
+      "manual_ms": 3.7785600423812866,
+      "paired_delta_ms": -0.053930044174194336,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.10)",
+            0.6508430000000662
+          ],
+          [
+            "empty_tensor",
+            0.2632599999999947
+          ],
+          [
+            "aten::copy_",
+            0.19314099999993778
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.10)",
+            0.7021079999999928
+          ],
+          [
+            "empty_tensor",
+            0.3052840000000143
+          ],
+          [
+            "aten::copy_",
+            0.20551500000004305
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.10",
+      "additive_ms": 2.567685844687168,
+      "measured_ms": 3.712149977684021,
+      "gap_ms": 1.1444641329968528,
+      "gap_pct": 30.83022345209431,
+      "manual_ms": 4.7138001918792725,
+      "paired_delta_ms": -1.0016502141952515,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.11)",
+            0.691400999999998
+          ],
+          [
+            "empty_tensor",
+            0.27509699999995074
+          ],
+          [
+            "aten::copy_",
+            0.1974290000000038
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.11)",
+            0.7078229999999458
+          ],
+          [
+            "empty_tensor",
+            0.3018549999999669
+          ],
+          [
+            "aten::copy_",
+            0.20191400000001886
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.11",
+      "additive_ms": 3.263794179644909,
+      "measured_ms": 3.7408699989318848,
+      "gap_ms": 0.47707581928697573,
+      "gap_pct": 12.753071328947362,
+      "manual_ms": 3.6654000282287598,
+      "paired_delta_ms": 0.075469970703125,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.12)",
+            0.6686549999999551
+          ],
+          [
+            "empty_tensor",
+            0.2777869999999528
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.21145700000005319
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.12)",
+            0.6779820000000327
+          ],
+          [
+            "empty_tensor",
+            0.2975929999999352
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.2253569999999454
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.12",
+      "additive_ms": 2.4724592999004913,
+      "measured_ms": 3.7136800289154053,
+      "gap_ms": 1.241220729014914,
+      "gap_pct": 33.422931414406676,
+      "manual_ms": 4.5671000480651855,
+      "paired_delta_ms": -0.8534200191497803,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.13)",
+            0.657851999999999
+          ],
+          [
+            "empty_tensor",
+            0.27454199999997203
+          ],
+          [
+            "aten::copy_",
+            0.19593099999995323
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.13)",
+            0.678905000000028
+          ],
+          [
+            "empty_tensor",
+            0.32206299999990745
+          ],
+          [
+            "aten::copy_",
+            0.21068100000001144
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.13",
+      "additive_ms": 3.3455804082192446,
+      "measured_ms": 3.7168500423431396,
+      "gap_ms": 0.371269634123895,
+      "gap_pct": 9.988824673966208,
+      "manual_ms": 3.75724995136261,
+      "paired_delta_ms": -0.040399909019470215,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.14)",
+            0.7057250000000495
+          ],
+          [
+            "empty_tensor",
+            0.27809299999993525
+          ],
+          [
+            "aten::copy_",
+            0.19711699999995472
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.14)",
+            0.7078330000000278
+          ],
+          [
+            "empty_tensor",
+            0.3006689999999507
+          ],
+          [
+            "aten::copy_",
+            0.20109299999999353
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.14",
+      "additive_ms": 3.418945483608968,
+      "measured_ms": 3.723889946937561,
+      "gap_ms": 0.30494446332859315,
+      "gap_pct": 8.188868835379312,
+      "manual_ms": 5.9628400802612305,
+      "paired_delta_ms": -2.2389501333236694,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.15)",
+            0.6603299999999727
+          ],
+          [
+            "empty_tensor",
+            0.2792359999999897
+          ],
+          [
+            "aten::copy_",
+            0.20051799999999642
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.15)",
+            0.6927719999999681
+          ],
+          [
+            "empty_tensor",
+            0.31056100000008874
+          ],
+          [
+            "aten::copy_",
+            0.20459799999993997
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.15",
+      "additive_ms": 3.3006402452973203,
+      "measured_ms": 3.835469961166382,
+      "gap_ms": 0.5348297158690616,
+      "gap_pct": 13.944307250066892,
+      "manual_ms": 3.706779956817627,
+      "paired_delta_ms": 0.12869000434875488,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.16)",
+            0.6663610000000044
+          ],
+          [
+            "empty_tensor",
+            0.28101699999996343
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.2312300000000687
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.16)",
+            0.6791399999999412
+          ],
+          [
+            "empty_tensor",
+            0.3064110000000508
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.23366499999994994
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.16",
+      "additive_ms": 2.508236407902854,
+      "measured_ms": 3.691879987716675,
+      "gap_ms": 1.183643579813821,
+      "gap_pct": 32.06072742754218,
+      "manual_ms": 4.629259824752808,
+      "paired_delta_ms": -0.9373798370361328,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.17)",
+            0.6415439999999507
+          ],
+          [
+            "empty_tensor",
+            0.28339100000009043
+          ],
+          [
+            "aten::copy_",
+            0.19088200000001232
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.17)",
+            0.6655780000000378
+          ],
+          [
+            "empty_tensor",
+            0.2982150000000547
+          ],
+          [
+            "aten::copy_",
+            0.2053640000000014
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.17",
+      "additive_ms": 3.256118623620117,
+      "measured_ms": 3.703439950942993,
+      "gap_ms": 0.447321327322876,
+      "gap_pct": 12.078535989465044,
+      "manual_ms": 3.6567800045013428,
+      "paired_delta_ms": 0.04665994644165039,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.18)",
+            0.6516679999999324
+          ],
+          [
+            "empty_tensor",
+            0.28713899999998116
+          ],
+          [
+            "aten::copy_",
+            0.1929290000000183
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.18)",
+            0.6761480000000302
+          ],
+          [
+            "empty_tensor",
+            0.31531100000013246
+          ],
+          [
+            "aten::copy_",
+            0.20008800000000337
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.18",
+      "additive_ms": 4.343327253862812,
+      "measured_ms": 7.017519950866699,
+      "gap_ms": 2.674192697003887,
+      "gap_pct": 38.10737576419161,
+      "manual_ms": 4.654090166091919,
+      "paired_delta_ms": 2.3634297847747803,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.19)",
+            0.6521450000000332
+          ],
+          [
+            "empty_tensor",
+            0.28012399999995224
+          ],
+          [
+            "aten::mul",
+            0.22322900000000664
+          ]
+        ],
+        [
+          [
+            "aten::mul",
+            4.643977000000029
+          ],
+          [
+            "FSDP::pre_forward (blocks.19)",
+            0.705062999999951
+          ],
+          [
+            "empty_tensor",
+            0.2898089999999355
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.19",
+      "additive_ms": 3.2593331010519906,
+      "measured_ms": 3.7361499071121216,
+      "gap_ms": 0.476816806060131,
+      "gap_pct": 12.762250389163032,
+      "manual_ms": 3.660390019416809,
+      "paired_delta_ms": 0.0757598876953125,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.20)",
+            0.6497479999999923
+          ],
+          [
+            "empty_tensor",
+            0.2791840000000664
+          ],
+          [
+            "aten::copy_",
+            0.1935039999999717
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.20)",
+            0.6976200000001409
+          ],
+          [
+            "empty_tensor",
+            0.3029739999999728
+          ],
+          [
+            "aten::copy_",
+            0.20321100000017028
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.20",
+      "additive_ms": 2.516978296902763,
+      "measured_ms": 3.7824900150299072,
+      "gap_ms": 1.265511718127144,
+      "gap_pct": 33.457106643998316,
+      "manual_ms": 4.636690139770508,
+      "paired_delta_ms": -0.8542001247406006,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.21)",
+            0.6528940000000147
+          ],
+          [
+            "empty_tensor",
+            0.28557099999998176
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.21095299999999412
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.21)",
+            0.6902660000000324
+          ],
+          [
+            "empty_tensor",
+            0.3189800000000397
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.2301339999999618
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.21",
+      "additive_ms": 3.270383417866386,
+      "measured_ms": 3.718679904937744,
+      "gap_ms": 0.44829648707135794,
+      "gap_pct": 12.055258815799126,
+      "manual_ms": 3.672800064086914,
+      "paired_delta_ms": 0.04587984085083008,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.22)",
+            0.6495159999999596
+          ],
+          [
+            "empty_tensor",
+            0.28422000000008835
+          ],
+          [
+            "aten::copy_",
+            0.19249400000006428
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.22)",
+            0.6716600000000617
+          ],
+          [
+            "empty_tensor",
+            0.3057909999999393
+          ],
+          [
+            "aten::copy_",
+            0.20224799999987594
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.22",
+      "additive_ms": 4.3363706851502535,
+      "measured_ms": 4.713760137557983,
+      "gap_ms": 0.3773894524077299,
+      "gap_pct": 8.006123379100083,
+      "manual_ms": 4.646179914474487,
+      "paired_delta_ms": 0.0675802230834961,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.23)",
+            0.6582180000000372
+          ],
+          [
+            "aten::addmm",
+            0.2945250000000087
+          ],
+          [
+            "empty_tensor",
+            0.2826839999999066
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.23)",
+            0.6956480000000738
+          ],
+          [
+            "aten::mul",
+            0.29781700000009725
+          ],
+          [
+            "empty_tensor",
+            0.28041200000009836
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.23",
+      "additive_ms": 3.3214853613398687,
+      "measured_ms": 3.748129963874817,
+      "gap_ms": 0.4266446025349482,
+      "gap_pct": 11.38286576631625,
+      "manual_ms": 3.7301900386810303,
+      "paired_delta_ms": 0.01793992519378662,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.24)",
+            0.6536009999999951
+          ],
+          [
+            "empty_tensor",
+            0.2908289999999398
+          ],
+          [
+            "aten::copy_",
+            0.19384599999999044
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.24)",
+            0.6758430000000517
+          ],
+          [
+            "empty_tensor",
+            0.3018520000001299
+          ],
+          [
+            "aten::copy_",
+            0.2057550000000628
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.24",
+      "additive_ms": 2.4287993506036023,
+      "measured_ms": 3.6967499256134033,
+      "gap_ms": 1.267950575009801,
+      "gap_pct": 34.29906270436753,
+      "manual_ms": 4.511460065841675,
+      "paired_delta_ms": -0.8147101402282715,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.25)",
+            0.6421649999999645
+          ],
+          [
+            "empty_tensor",
+            0.2978999999999941
+          ],
+          [
+            "aten::copy_",
+            0.19352999999996975
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.25)",
+            0.682920000000071
+          ],
+          [
+            "empty_tensor",
+            0.29947499999994737
+          ],
+          [
+            "aten::copy_",
+            0.20247199999995064
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.25",
+      "additive_ms": 3.3587855277898737,
+      "measured_ms": 3.715190052986145,
+      "gap_ms": 0.3564045251962713,
+      "gap_pct": 9.593170742632811,
+      "manual_ms": 3.7720799446105957,
+      "paired_delta_ms": -0.056889891624450684,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.26)",
+            0.6725639999999549
+          ],
+          [
+            "empty_tensor",
+            0.292003000000026
+          ],
+          [
+            "aten::copy_",
+            0.19506900000001767
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.26)",
+            0.7299899999999325
+          ],
+          [
+            "empty_tensor",
+            0.30285600000011614
+          ],
+          [
+            "aten::copy_",
+            0.19631399999998392
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.26",
+      "additive_ms": 2.481737065959406,
+      "measured_ms": 3.739799976348877,
+      "gap_ms": 1.2580629103894712,
+      "gap_pct": 33.63984486725686,
+      "manual_ms": 4.592679977416992,
+      "paired_delta_ms": -0.8528800010681152,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.27)",
+            0.7256049999999231
+          ],
+          [
+            "empty_tensor",
+            0.2868139999998821
+          ],
+          [
+            "aten::copy_",
+            0.20108600000008292
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.27)",
+            0.6905839999998862
+          ],
+          [
+            "empty_tensor",
+            0.30042999999981845
+          ],
+          [
+            "aten::copy_",
+            0.20498400000002584
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.27",
+      "additive_ms": 3.3056088170911035,
+      "measured_ms": 3.76324999332428,
+      "gap_ms": 0.45764117623317624,
+      "gap_pct": 12.160796573307566,
+      "manual_ms": 3.71235990524292,
+      "paired_delta_ms": 0.05089008808135986,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "FSDP::pre_forward (blocks.28)",
+            0.6770570000000007
+          ],
+          [
+            "empty_tensor",
+            0.2863620000001102
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.20527299999978277
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.28)",
+            0.7101950000001234
+          ],
+          [
+            "empty_tensor",
+            0.3086690000000529
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            0.21491500000006633
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.28",
+      "additive_ms": 2.570303572627327,
+      "measured_ms": 4.553030014038086,
+      "gap_ms": 1.982726441410759,
+      "gap_pct": 43.54740547058853,
+      "manual_ms": 4.618340015411377,
+      "paired_delta_ms": -0.06531000137329102,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            0.7828599999999858
+          ],
+          [
+            "FSDP::pre_forward (blocks.29)",
+            0.6662220000000089
+          ],
+          [
+            "npu::npu_fusion_attention",
+            0.29338999999995574
+          ]
+        ],
+        [
+          [
+            "FSDP::pre_forward (blocks.29)",
+            0.9332280000000028
+          ],
+          [
+            "empty_tensor",
+            0.6778550000000106
+          ],
+          [
+            "aten::addmm",
+            0.3018430000000808
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.forward.29",
+      "additive_ms": 5.071934603710205,
+      "measured_ms": 7.130079984664917,
+      "gap_ms": 2.058145380954712,
+      "gap_pct": 28.865670306382068,
+      "manual_ms": 5.696029901504517,
+      "paired_delta_ms": 1.4340500831604004,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2525720000002185
+          ],
+          [
+            "aten::addmm",
+            0.46175999999992207
+          ],
+          [
+            "FSDP::post_forward (blocks.29)",
+            0.15680000000001745
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.105066999999749
+          ],
+          [
+            "npu::npu_fusion_attention",
+            0.46884700000009616
+          ],
+          [
+            "FSDP::post_forward (blocks.29)",
+            0.16655199999999604
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "score.critic",
+      "additive_ms": 92.98875980624776,
+      "measured_ms": 100.6304702758789,
+      "gap_ms": 7.64171046963115,
+      "gap_pct": 7.5938336059459575,
+      "manual_ms": 104.43091201782227,
+      "paired_delta_ms": -3.8004417419433594,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            8.579376000002364
+          ],
+          [
+            "aten::copy_",
+            7.923823000000534
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            4.769462000001164
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            8.681926999998714
+          ],
+          [
+            "aten::copy_",
+            8.05228700000085
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            4.9025890000039105
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "score.teacher.conditional",
+      "additive_ms": 86.75602913642922,
+      "measured_ms": 99.70270919799805,
+      "gap_ms": 12.946680061568827,
+      "gap_pct": 12.98528411686208,
+      "manual_ms": 97.4312515258789,
+      "paired_delta_ms": 2.2714576721191406,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::copy_",
+            8.375333000000422
+          ],
+          [
+            "empty_tensor",
+            7.884701000000552
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            4.969001000000814
+          ]
+        ],
+        [
+          [
+            "aten::copy_",
+            8.484533999999869
+          ],
+          [
+            "empty_tensor",
+            8.060201000002682
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            5.074194999998443
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "score.teacher.unconditional",
+      "additive_ms": 85.46101093737465,
+      "measured_ms": 96.5052604675293,
+      "gap_ms": 11.044249530154644,
+      "gap_pct": 11.444194312983232,
+      "manual_ms": 95.97688293457031,
+      "paired_delta_ms": 0.5283775329589844,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::copy_",
+            8.358493999999487
+          ],
+          [
+            "empty_tensor",
+            7.841628000000771
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            4.94970099999983
+          ]
+        ],
+        [
+          [
+            "aten::copy_",
+            8.387397000001283
+          ],
+          [
+            "empty_tensor",
+            7.962495999999628
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            5.054634000001358
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "rollout.student",
+      "additive_ms": 93.02894316247436,
+      "measured_ms": 100.91054153442383,
+      "gap_ms": 7.881598371949465,
+      "gap_pct": 7.810480701127541,
+      "manual_ms": 104.47603988647461,
+      "paired_delta_ms": -3.5654983520507812,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::copy_",
+            8.021969999997761
+          ],
+          [
+            "empty_tensor",
+            7.9304910000000834
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            5.006682999997929
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            8.193682999996604
+          ],
+          [
+            "aten::copy_",
+            8.050612000000715
+          ],
+          [
+            "npu::_npu_dtype_cast",
+            5.116896000001818
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.0",
+      "additive_ms": 5.078870898512524,
+      "measured_ms": 8.38773000240326,
+      "gap_ms": 3.308859103890735,
+      "gap_pct": 39.44880322736519,
+      "manual_ms": 8.293639898300171,
+      "paired_delta_ms": 0.09409010410308838,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::copy_",
+            3.062722999999416
+          ],
+          [
+            "FSDP::pre_forward (blocks.1)",
+            0.9160300000013085
+          ],
+          [
+            "empty_tensor",
+            0.7870560000009139
+          ]
+        ],
+        [
+          [
+            "aten::copy_",
+            2.840898999999974
+          ],
+          [
+            "empty_tensor",
+            1.0242220000000668
+          ],
+          [
+            "FSDP::pre_forward (blocks.1)",
+            0.8153289999999106
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.1",
+      "additive_ms": 3.3592397347353877,
+      "measured_ms": 6.063610076904297,
+      "gap_ms": 2.704370342168909,
+      "gap_pct": 44.6000040878221,
+      "manual_ms": 3.7725900411605835,
+      "paired_delta_ms": 2.2910200357437134,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.3862639999997346
+          ],
+          [
+            "FSDP::pre_forward (blocks.2)",
+            1.1097140000006185
+          ],
+          [
+            "aten::addmm",
+            0.3021019999999553
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2420219999997644
+          ],
+          [
+            "FSDP::pre_forward (blocks.2)",
+            0.6624579999994021
+          ],
+          [
+            "aten::addmm",
+            0.2671960000003455
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.2",
+      "additive_ms": 2.859637719901237,
+      "measured_ms": 5.862150192260742,
+      "gap_ms": 3.002512472359505,
+      "gap_pct": 51.21862070889017,
+      "manual_ms": 5.3317999839782715,
+      "paired_delta_ms": 0.5303502082824707,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.4084360000004525
+          ],
+          [
+            "FSDP::pre_forward (blocks.3)",
+            0.7340590000003576
+          ],
+          [
+            "aten::addmm",
+            0.4740159999997123
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1194459999998803
+          ],
+          [
+            "FSDP::pre_forward (blocks.3)",
+            0.6712589999997289
+          ],
+          [
+            "aten::addmm",
+            0.25893000000005123
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.3",
+      "additive_ms": 3.3308081207721107,
+      "measured_ms": 5.892769813537598,
+      "gap_ms": 2.561961692765487,
+      "gap_pct": 43.47635787299603,
+      "manual_ms": 3.7406599521636963,
+      "paired_delta_ms": 2.1521098613739014,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.548584999999146
+          ],
+          [
+            "FSDP::pre_forward (blocks.4)",
+            0.6319559999995399
+          ],
+          [
+            "aten::addmm",
+            0.46580799999984446
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2758509999995589
+          ],
+          [
+            "FSDP::pre_forward (blocks.4)",
+            0.6661849999994738
+          ],
+          [
+            "aten::addmm",
+            0.2601599999997998
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.4",
+      "additive_ms": 2.436742789355612,
+      "measured_ms": 5.833739995956421,
+      "gap_ms": 3.3969972066008087,
+      "gap_pct": 58.23017839251307,
+      "manual_ms": 4.689189910888672,
+      "paired_delta_ms": 1.144550085067749,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.155875999999814
+          ],
+          [
+            "FSDP::pre_forward (blocks.5)",
+            0.6494970000002067
+          ],
+          [
+            "aten::addmm",
+            0.45584199999971314
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1182869999998946
+          ],
+          [
+            "FSDP::pre_forward (blocks.5)",
+            0.6674999999996507
+          ],
+          [
+            "aten::addmm",
+            0.2676689999999944
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.5",
+      "additive_ms": 3.6604733051108935,
+      "measured_ms": 6.1374499797821045,
+      "gap_ms": 2.476976674671211,
+      "gap_pct": 40.35840101069386,
+      "manual_ms": 4.110890030860901,
+      "paired_delta_ms": 2.0265599489212036,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.3496119999993836
+          ],
+          [
+            "FSDP::pre_forward (blocks.6)",
+            0.6465299999996786
+          ],
+          [
+            "aten::addmm",
+            0.4644050000001444
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.276089999999269
+          ],
+          [
+            "FSDP::pre_forward (blocks.6)",
+            0.6809150000000372
+          ],
+          [
+            "aten::addmm",
+            0.2630340000001015
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.6",
+      "additive_ms": 2.362677909612925,
+      "measured_ms": 5.909389972686768,
+      "gap_ms": 3.5467120630738425,
+      "gap_pct": 60.018243498343566,
+      "manual_ms": 4.574079990386963,
+      "paired_delta_ms": 1.3353099822998047,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.421429999999818
+          ],
+          [
+            "FSDP::pre_forward (blocks.7)",
+            0.6350740000002552
+          ],
+          [
+            "aten::addmm",
+            0.4730509999998612
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2898710000001596
+          ],
+          [
+            "FSDP::pre_forward (blocks.7)",
+            0.6652009999998845
+          ],
+          [
+            "aten::addmm",
+            0.28859700000006705
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.7",
+      "additive_ms": 3.3884103505109255,
+      "measured_ms": 6.2576398849487305,
+      "gap_ms": 2.869229534437805,
+      "gap_pct": 45.851624369421714,
+      "manual_ms": 3.8053500652313232,
+      "paired_delta_ms": 2.4522898197174072,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.6515029999995603
+          ],
+          [
+            "FSDP::pre_forward (blocks.8)",
+            0.6401509999999544
+          ],
+          [
+            "aten::addmm",
+            0.47674900000030174
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.412452000000281
+          ],
+          [
+            "FSDP::pre_forward (blocks.8)",
+            0.8223830000000307
+          ],
+          [
+            "aten::copy_",
+            0.2589079999999376
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.8",
+      "additive_ms": 2.4254490320256155,
+      "measured_ms": 5.7464799880981445,
+      "gap_ms": 3.321030956072529,
+      "gap_pct": 57.7924392489124,
+      "manual_ms": 4.668009996414185,
+      "paired_delta_ms": 1.07846999168396,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.241218000000227
+          ],
+          [
+            "FSDP::pre_forward (blocks.9)",
+            0.6297540000003065
+          ],
+          [
+            "aten::addmm",
+            0.4669330000000773
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1841390000001988
+          ],
+          [
+            "FSDP::pre_forward (blocks.9)",
+            0.65316100000008
+          ],
+          [
+            "aten::addmm",
+            0.32207400000002234
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.9",
+      "additive_ms": 3.369951651983927,
+      "measured_ms": 7.047060012817383,
+      "gap_ms": 3.6771083608334556,
+      "gap_pct": 52.17932519583247,
+      "manual_ms": 3.7846200466156006,
+      "paired_delta_ms": 3.2624399662017822,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.6467110000002414
+          ],
+          [
+            "FSDP::pre_forward (blocks.10)",
+            0.6422569999999832
+          ],
+          [
+            "aten::addmm",
+            0.5582709999999498
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.5783799999997687
+          ],
+          [
+            "FSDP::pre_forward (blocks.10)",
+            0.9379559999994235
+          ],
+          [
+            "aten::addmm",
+            0.2910740000001387
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.10",
+      "additive_ms": 2.4378859339368404,
+      "measured_ms": 7.19622015953064,
+      "gap_ms": 4.758334225593799,
+      "gap_pct": 66.12268830174524,
+      "manual_ms": 4.6907501220703125,
+      "paired_delta_ms": 2.505470037460327,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            3.0359370000002666
+          ],
+          [
+            "FSDP::pre_forward (blocks.11)",
+            0.6348950000006007
+          ],
+          [
+            "aten::addmm",
+            0.5273089999997755
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.3843919999996435
+          ],
+          [
+            "FSDP::pre_forward (blocks.11)",
+            0.9465920000002952
+          ],
+          [
+            "aten::addmm",
+            0.47900899999984536
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.11",
+      "additive_ms": 3.349471578634911,
+      "measured_ms": 6.769649982452393,
+      "gap_ms": 3.4201784038174816,
+      "gap_pct": 50.52223398082508,
+      "manual_ms": 3.7616199254989624,
+      "paired_delta_ms": 3.00803005695343,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.503470999999554
+          ],
+          [
+            "FSDP::pre_forward (blocks.12)",
+            0.6514730000004638
+          ],
+          [
+            "aten::addmm",
+            0.4668669999999693
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.572621000000392
+          ],
+          [
+            "FSDP::pre_forward (blocks.12)",
+            0.6755280000001658
+          ],
+          [
+            "aten::addmm",
+            0.4989329999999609
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.12",
+      "additive_ms": 2.4418351030310657,
+      "measured_ms": 6.707559823989868,
+      "gap_ms": 4.2657247209588025,
+      "gap_pct": 63.59577600340231,
+      "manual_ms": 4.6986000537872314,
+      "paired_delta_ms": 2.0089597702026367,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.9913770000003272
+          ],
+          [
+            "FSDP::pre_forward (blocks.13)",
+            0.6511109999999171
+          ],
+          [
+            "aten::addmm",
+            0.46850899999996176
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.1300170000005747
+          ],
+          [
+            "FSDP::pre_forward (blocks.13)",
+            0.6601189999994822
+          ],
+          [
+            "aten::addmm",
+            0.4656970000002766
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.13",
+      "additive_ms": 3.3333814647730655,
+      "measured_ms": 6.931529998779297,
+      "gap_ms": 3.5981485340062314,
+      "gap_pct": 51.909874654512016,
+      "manual_ms": 3.743549942970276,
+      "paired_delta_ms": 3.187980055809021,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.6694929999997825
+          ],
+          [
+            "FSDP::pre_forward (blocks.14)",
+            0.6404770000000717
+          ],
+          [
+            "aten::addmm",
+            0.47712199999997396
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.4171389999995
+          ],
+          [
+            "FSDP::pre_forward (blocks.14)",
+            0.6566850000005215
+          ],
+          [
+            "aten::addmm",
+            0.538006999999634
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.14",
+      "additive_ms": 2.4549860380804316,
+      "measured_ms": 6.947309970855713,
+      "gap_ms": 4.492323932775282,
+      "gap_pct": 64.66278245278804,
+      "manual_ms": 4.714669942855835,
+      "paired_delta_ms": 2.232640027999878,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.563610999999452
+          ],
+          [
+            "FSDP::pre_forward (blocks.15)",
+            0.9349660000004806
+          ],
+          [
+            "aten::addmm",
+            0.4804370000001509
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.3685609999994037
+          ],
+          [
+            "FSDP::pre_forward (blocks.15)",
+            0.6801790000001201
+          ],
+          [
+            "aten::addmm",
+            0.46179800000018434
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.15",
+      "additive_ms": 3.3182707777600755,
+      "measured_ms": 6.783089876174927,
+      "gap_ms": 3.4648190984148513,
+      "gap_pct": 51.0802475223682,
+      "manual_ms": 3.7265799045562744,
+      "paired_delta_ms": 3.0565099716186523,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.5753789999999563
+          ],
+          [
+            "FSDP::pre_forward (blocks.16)",
+            0.6479060000004246
+          ],
+          [
+            "aten::addmm",
+            0.4576389999996172
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.329437999999384
+          ],
+          [
+            "FSDP::pre_forward (blocks.16)",
+            0.9555680000003195
+          ],
+          [
+            "aten::addmm",
+            0.4792110000001266
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.16",
+      "additive_ms": 2.424305828886218,
+      "measured_ms": 6.983389854431152,
+      "gap_ms": 4.5590840255449345,
+      "gap_pct": 65.28468438078208,
+      "manual_ms": 4.665210008621216,
+      "paired_delta_ms": 2.3181798458099365,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.3374220000003683
+          ],
+          [
+            "FSDP::pre_forward (blocks.17)",
+            0.6280499999998137
+          ],
+          [
+            "aten::addmm",
+            0.585359000000055
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.3986990000004886
+          ],
+          [
+            "FSDP::pre_forward (blocks.17)",
+            0.9485309999996098
+          ],
+          [
+            "aten::addmm",
+            0.7390229999998118
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.17",
+      "additive_ms": 3.3711982531449722,
+      "measured_ms": 6.589590072631836,
+      "gap_ms": 3.2183918194868637,
+      "gap_pct": 48.840546741346245,
+      "manual_ms": 3.786020040512085,
+      "paired_delta_ms": 2.803570032119751,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.284728999999935
+          ],
+          [
+            "FSDP::pre_forward (blocks.18)",
+            0.6601829999998444
+          ],
+          [
+            "aten::addmm",
+            0.4589360000001034
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.031936000000686
+          ],
+          [
+            "FSDP::pre_forward (blocks.18)",
+            0.666618999999715
+          ],
+          [
+            "aten::addmm",
+            0.4862050000000745
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.18",
+      "additive_ms": 2.354638544031512,
+      "measured_ms": 764.4864501953125,
+      "gap_ms": 762.1318116512809,
+      "gap_pct": 99.69199734757495,
+      "manual_ms": 4.5640599727630615,
+      "paired_delta_ms": 759.9223902225494,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::stack",
+            743.2112829999999
+          ],
+          [
+            "empty_tensor",
+            2.5492799999980487
+          ],
+          [
+            "FSDP::pre_forward (blocks.19)",
+            0.7438709999991115
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            772.382687
+          ],
+          [
+            "FSDP::pre_forward (blocks.19)",
+            0.9878410000000148
+          ],
+          [
+            "aten::stack",
+            0.4536460000000661
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.19",
+      "additive_ms": 3.415595257165239,
+      "measured_ms": 5.3731300830841064,
+      "gap_ms": 1.9575348259188674,
+      "gap_pct": 36.431926933644384,
+      "manual_ms": 3.8358800411224365,
+      "paired_delta_ms": 1.53725004196167,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.0879739999969027
+          ],
+          [
+            "FSDP::pre_forward (blocks.20)",
+            0.7977499999993015
+          ],
+          [
+            "aten::addmm",
+            0.24983399999956601
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.0378230000003237
+          ],
+          [
+            "FSDP::pre_forward (blocks.20)",
+            0.7121849999995902
+          ],
+          [
+            "aten::addmm",
+            0.2660360000005458
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.20",
+      "additive_ms": 2.3815143766814253,
+      "measured_ms": 5.414019823074341,
+      "gap_ms": 3.0325054463929155,
+      "gap_pct": 56.01208612994906,
+      "manual_ms": 4.606040000915527,
+      "paired_delta_ms": 0.8079798221588135,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3385139999995013
+          ],
+          [
+            "FSDP::pre_forward (blocks.21)",
+            0.6658300000010058
+          ],
+          [
+            "aten::addmm",
+            0.24985899999947286
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.140196999999927
+          ],
+          [
+            "FSDP::pre_forward (blocks.21)",
+            0.6798630000010598
+          ],
+          [
+            "aten::addmm",
+            0.28126799999992363
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.21",
+      "additive_ms": 3.3679837757130984,
+      "measured_ms": 5.179549932479858,
+      "gap_ms": 1.81156615676676,
+      "gap_pct": 34.97535848446625,
+      "manual_ms": 3.7824100255966187,
+      "paired_delta_ms": 1.3971399068832397,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2519010000007698
+          ],
+          [
+            "FSDP::pre_forward (blocks.22)",
+            0.6709730000006966
+          ],
+          [
+            "aten::addmm",
+            0.26556799999973735
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2503690000015775
+          ],
+          [
+            "FSDP::pre_forward (blocks.22)",
+            0.7037410000003874
+          ],
+          [
+            "aten::addmm",
+            0.29553900000010613
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.22",
+      "additive_ms": 2.4084894248450803,
+      "measured_ms": 5.156530141830444,
+      "gap_ms": 2.748040716985364,
+      "gap_pct": 53.292439710434344,
+      "manual_ms": 4.64205002784729,
+      "paired_delta_ms": 0.5144801139831543,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1666499999999063
+          ],
+          [
+            "FSDP::pre_forward (blocks.23)",
+            0.6809429999992717
+          ],
+          [
+            "aten::copy_",
+            0.2566790000004694
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2181470000005783
+          ],
+          [
+            "FSDP::pre_forward (blocks.23)",
+            0.6780819999999367
+          ],
+          [
+            "aten::copy_",
+            0.2760919999990147
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.23",
+      "additive_ms": 3.3304163288029844,
+      "measured_ms": 5.1860198974609375,
+      "gap_ms": 1.855603568657953,
+      "gap_pct": 35.780880238551575,
+      "manual_ms": 3.7402199506759644,
+      "paired_delta_ms": 1.4457999467849731,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2304200000003913
+          ],
+          [
+            "FSDP::pre_forward (blocks.24)",
+            0.6609630000004545
+          ],
+          [
+            "aten::addmm",
+            0.25922899999935184
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.4230859999984966
+          ],
+          [
+            "FSDP::pre_forward (blocks.24)",
+            0.6727259999997914
+          ],
+          [
+            "aten::addmm",
+            0.24834499999973922
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.24",
+      "additive_ms": 2.464638296677563,
+      "measured_ms": 5.232310056686401,
+      "gap_ms": 2.7676717600088385,
+      "gap_pct": 52.89579038749842,
+      "manual_ms": 4.731410026550293,
+      "paired_delta_ms": 0.5009000301361084,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1963260000001168
+          ],
+          [
+            "FSDP::pre_forward (blocks.25)",
+            0.6769070000005886
+          ],
+          [
+            "aten::addmm",
+            0.2541799999990035
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.3102579999989832
+          ],
+          [
+            "FSDP::pre_forward (blocks.25)",
+            0.6745820000004024
+          ],
+          [
+            "aten::addmm",
+            0.25572999999951573
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.25",
+      "additive_ms": 3.3251539395693364,
+      "measured_ms": 5.1740100383758545,
+      "gap_ms": 1.8488560988065181,
+      "gap_pct": 35.73352361308682,
+      "manual_ms": 3.734310030937195,
+      "paired_delta_ms": 1.4397000074386597,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.273672999999951
+          ],
+          [
+            "FSDP::pre_forward (blocks.26)",
+            0.6849549999996088
+          ],
+          [
+            "aten::addmm",
+            0.247153999999864
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1208909999995964
+          ],
+          [
+            "FSDP::pre_forward (blocks.26)",
+            0.6668960000006482
+          ],
+          [
+            "aten::addmm",
+            0.2654879999996629
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.26",
+      "additive_ms": 2.4445465284282606,
+      "measured_ms": 5.312550067901611,
+      "gap_ms": 2.8680035394733507,
+      "gap_pct": 53.98544019004747,
+      "manual_ms": 4.701920032501221,
+      "paired_delta_ms": 0.6106300354003906,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.334181000000331
+          ],
+          [
+            "FSDP::pre_forward (blocks.27)",
+            0.6578660000003874
+          ],
+          [
+            "aten::addmm",
+            0.2519660000007134
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2700179999982937
+          ],
+          [
+            "FSDP::pre_forward (blocks.27)",
+            0.6706459999985527
+          ],
+          [
+            "aten::addmm",
+            0.34212799999979326
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.27",
+      "additive_ms": 3.335206890536561,
+      "measured_ms": 5.3990700244903564,
+      "gap_ms": 2.0638631339537956,
+      "gap_pct": 38.226270905767954,
+      "manual_ms": 3.7455999851226807,
+      "paired_delta_ms": 1.6534700393676758,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2600770000005141
+          ],
+          [
+            "FSDP::pre_forward (blocks.28)",
+            0.6804160000008996
+          ],
+          [
+            "aten::addmm",
+            0.28607600000035016
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2739429999999692
+          ],
+          [
+            "FSDP::pre_forward (blocks.28)",
+            0.6837399999992922
+          ],
+          [
+            "aten::neg",
+            0.33391699999989943
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.28",
+      "additive_ms": 2.4222486482948984,
+      "measured_ms": 5.215579986572266,
+      "gap_ms": 2.7933313382773672,
+      "gap_pct": 53.557444147514154,
+      "manual_ms": 4.668190002441406,
+      "paired_delta_ms": 0.5473899841308594,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3284120000009436
+          ],
+          [
+            "FSDP::pre_forward (blocks.29)",
+            0.6857450000008103
+          ],
+          [
+            "aten::addmm",
+            0.26010699999984355
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2380350000008473
+          ],
+          [
+            "FSDP::pre_forward (blocks.29)",
+            0.6788529999996535
+          ],
+          [
+            "aten::addmm",
+            0.25519099999940953
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.forward.29",
+      "additive_ms": 2.8683082629367,
+      "measured_ms": 4.831409931182861,
+      "gap_ms": 1.9631016682461615,
+      "gap_pct": 40.63206592294975,
+      "manual_ms": 3.221250057220459,
+      "paired_delta_ms": 1.6101598739624023,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.235661000000546
+          ],
+          [
+            "aten::addmm",
+            0.2695019999989309
+          ],
+          [
+            "FSDP::post_forward (blocks.29)",
+            0.166252000000095
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.271450999999186
+          ],
+          [
+            "aten::addmm",
+            0.2758599999998696
+          ],
+          [
+            "FSDP::post_forward (blocks.29)",
+            0.17541800000006333
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.29",
+      "additive_ms": 10.096044262503108,
+      "measured_ms": 14.460829734802246,
+      "gap_ms": 4.364785472299138,
+      "gap_pct": 30.183506426291704,
+      "manual_ms": 11.338350057601929,
+      "paired_delta_ms": 3.1224796772003174,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            2.943914000000571
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.29)",
+            0.914176999999443
+          ],
+          [
+            "FSDP::pre_backward (blocks.29)",
+            0.7381210000000429
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.9003100000002884
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.29)",
+            1.0902139999989886
+          ],
+          [
+            "FSDP::pre_backward (blocks.29)",
+            0.9037050000005402
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.28",
+      "additive_ms": 5.299700485127221,
+      "measured_ms": 7.3925299644470215,
+      "gap_ms": 2.092829479319801,
+      "gap_pct": 28.310057441564247,
+      "manual_ms": 9.522540092468262,
+      "paired_delta_ms": -2.1300101280212402,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1886720000018833
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.28)",
+            0.794528999999864
+          ],
+          [
+            "FSDP::pre_backward (blocks.28)",
+            0.5871340000012424
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.188049999999348
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.28)",
+            0.8106509999993723
+          ],
+          [
+            "FSDP::pre_backward (blocks.28)",
+            0.5824729999997653
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.27",
+      "additive_ms": 5.815090196338682,
+      "measured_ms": 7.112879991531372,
+      "gap_ms": 1.2977897951926902,
+      "gap_pct": 18.24563041605995,
+      "manual_ms": 6.530629873275757,
+      "paired_delta_ms": 0.5822501182556152,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2190030000009573
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.27)",
+            0.7755229999988805
+          ],
+          [
+            "FSDP::pre_backward (blocks.27)",
+            0.5650809999990742
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.198196999997366
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.27)",
+            0.7841119999999646
+          ],
+          [
+            "FSDP::pre_backward (blocks.27)",
+            0.5648549999992829
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.26",
+      "additive_ms": 4.806475767303751,
+      "measured_ms": 6.912019968032837,
+      "gap_ms": 2.105544200729086,
+      "gap_pct": 30.462067680170843,
+      "manual_ms": 8.894820213317871,
+      "paired_delta_ms": -1.9828002452850342,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.5647930000009946
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.26)",
+            0.7833170000005047
+          ],
+          [
+            "FSDP::pre_backward (blocks.26)",
+            0.5721200000003446
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.573558000001125
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.26)",
+            0.7686050000006799
+          ],
+          [
+            "FSDP::pre_backward (blocks.26)",
+            0.5751960000002291
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.25",
+      "additive_ms": 5.811341688726187,
+      "measured_ms": 7.102229833602905,
+      "gap_ms": 1.2908881448767184,
+      "gap_pct": 18.175814851402254,
+      "manual_ms": 6.5264201164245605,
+      "paired_delta_ms": 0.5758097171783447,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2186249999995342
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.25)",
+            0.7556649999993388
+          ],
+          [
+            "FSDP::pre_backward (blocks.25)",
+            0.570598000000231
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.177114999999292
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.25)",
+            0.778685999999987
+          ],
+          [
+            "FSDP::pre_backward (blocks.25)",
+            0.5711680000000633
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.24",
+      "additive_ms": 4.79099244471774,
+      "measured_ms": 6.816830158233643,
+      "gap_ms": 2.0258377135159025,
+      "gap_pct": 29.71817789928379,
+      "manual_ms": 8.899199962615967,
+      "paired_delta_ms": -2.082369804382324,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2507040000003762
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.24)",
+            0.7747970000002533
+          ],
+          [
+            "FSDP::pre_backward (blocks.24)",
+            0.5745499999991153
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.170147999999579
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.24)",
+            0.7702299999995157
+          ],
+          [
+            "FSDP::pre_backward (blocks.24)",
+            0.565094999999972
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.23",
+      "additive_ms": 5.815001456678376,
+      "measured_ms": 6.80938982963562,
+      "gap_ms": 0.9943883729572445,
+      "gap_pct": 14.603193499504135,
+      "manual_ms": 6.530530214309692,
+      "paired_delta_ms": 0.27885961532592773,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1568730000001377
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.23)",
+            0.7637049999998416
+          ],
+          [
+            "FSDP::pre_backward (blocks.23)",
+            0.5695740000007209
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1673110000006852
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.23)",
+            0.7835250000006053
+          ],
+          [
+            "FSDP::pre_backward (blocks.23)",
+            0.5654409999994096
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.22",
+      "additive_ms": 8.307197669506817,
+      "measured_ms": 10.265079975128174,
+      "gap_ms": 1.9578823056213572,
+      "gap_pct": 19.073229924805435,
+      "manual_ms": 8.900700092315674,
+      "paired_delta_ms": 1.3643798828125,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "MulBackward0",
+            1.3714129999992442
+          ],
+          [
+            "empty_tensor",
+            1.3232319999979811
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.22)",
+            0.7907969999997877
+          ]
+        ],
+        [
+          [
+            "MulBackward0",
+            1.4367450000008104
+          ],
+          [
+            "empty_tensor",
+            1.3257000000004189
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.22)",
+            0.7978509999990929
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.21",
+      "additive_ms": 5.792918443604142,
+      "measured_ms": 7.02882981300354,
+      "gap_ms": 1.235911369399398,
+      "gap_pct": 17.58345844585575,
+      "manual_ms": 6.505729913711548,
+      "paired_delta_ms": 0.5230998992919922,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1890269999988377
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.21)",
+            0.7726349999993108
+          ],
+          [
+            "FSDP::pre_backward (blocks.21)",
+            0.6442020000005141
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1434479999993927
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.21)",
+            0.785800999999512
+          ],
+          [
+            "FSDP::pre_backward (blocks.21)",
+            0.6090420000005979
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.20",
+      "additive_ms": 4.856627140483647,
+      "measured_ms": 6.829390048980713,
+      "gap_ms": 1.9727629084970655,
+      "gap_pct": 28.886370442284235,
+      "manual_ms": 8.946710109710693,
+      "paired_delta_ms": -2.1173200607299805,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.5761770000003745
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.20)",
+            0.774005999998888
+          ],
+          [
+            "FSDP::pre_backward (blocks.20)",
+            0.5668929999989923
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.5807810000004245
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.20)",
+            0.7645290000010282
+          ],
+          [
+            "FSDP::pre_backward (blocks.20)",
+            0.561053000001004
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.19",
+      "additive_ms": 5.797735648465395,
+      "measured_ms": 7.151849985122681,
+      "gap_ms": 1.354114336657286,
+      "gap_pct": 18.933763144838366,
+      "manual_ms": 6.511139869689941,
+      "paired_delta_ms": 0.6407101154327393,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1812269999985585
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.19)",
+            0.758747999999905
+          ],
+          [
+            "FSDP::pre_backward (blocks.19)",
+            0.5667909999999683
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.15843400000222
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.19)",
+            0.7727619999991729
+          ],
+          [
+            "FSDP::pre_backward (blocks.19)",
+            0.5608829999985173
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.18",
+      "additive_ms": 8.326055000926425,
+      "measured_ms": 9.984220027923584,
+      "gap_ms": 1.6581650269971586,
+      "gap_pct": 16.607857422609374,
+      "manual_ms": 8.921780109405518,
+      "paired_delta_ms": 1.0624399185180664,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3898420000018086
+          ],
+          [
+            "MulBackward0",
+            1.2800979999992996
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.18)",
+            0.7736840000005905
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.416031000000657
+          ],
+          [
+            "MulBackward0",
+            1.27340600000089
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.18)",
+            0.7809709999992046
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.17",
+      "additive_ms": 5.826211738406744,
+      "measured_ms": 7.043840169906616,
+      "gap_ms": 1.2176284314998727,
+      "gap_pct": 17.286429023502606,
+      "manual_ms": 6.54311990737915,
+      "paired_delta_ms": 0.5007202625274658,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1503260000008158
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.17)",
+            0.7809190000009257
+          ],
+          [
+            "FSDP::pre_backward (blocks.17)",
+            0.5578679999988526
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1466589999985881
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.17)",
+            0.7821109999991022
+          ],
+          [
+            "FSDP::pre_backward (blocks.17)",
+            0.5592380000005942
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.16",
+      "additive_ms": 4.830080578394938,
+      "measured_ms": 6.809470176696777,
+      "gap_ms": 1.9793895983018395,
+      "gap_pct": 29.068188081293957,
+      "manual_ms": 8.914509773254395,
+      "paired_delta_ms": -2.105039596557617,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1741510000005366
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.16)",
+            0.7626569999991916
+          ],
+          [
+            "FSDP::pre_backward (blocks.16)",
+            0.5674919999993872
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1775760000017472
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.16)",
+            0.7707059999997727
+          ],
+          [
+            "FSDP::pre_backward (blocks.16)",
+            0.5637689999996219
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.15",
+      "additive_ms": 5.783266201031243,
+      "measured_ms": 6.784019947052002,
+      "gap_ms": 1.0007537460207594,
+      "gap_pct": 14.751633306379608,
+      "manual_ms": 6.494889974594116,
+      "paired_delta_ms": 0.28912997245788574,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1008300000000744
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.15)",
+            0.7689930000007152
+          ],
+          [
+            "FSDP::pre_backward (blocks.15)",
+            0.5715810000000056
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1358880000007336
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.15)",
+            0.7814729999997653
+          ],
+          [
+            "FSDP::pre_backward (blocks.15)",
+            0.5715449999994598
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.14",
+      "additive_ms": 5.119542077880784,
+      "measured_ms": 6.770259857177734,
+      "gap_ms": 1.6507177792969507,
+      "gap_pct": 24.381896915624043,
+      "manual_ms": 8.928779602050781,
+      "paired_delta_ms": -2.158519744873047,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1868660000020175
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.14)",
+            0.768880000000121
+          ],
+          [
+            "FSDP::pre_backward (blocks.14)",
+            0.5630380000004079
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.17018999999878
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.14)",
+            0.7879420000002719
+          ],
+          [
+            "FSDP::pre_backward (blocks.14)",
+            0.5669129999983125
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.13",
+      "additive_ms": 5.815286145397204,
+      "measured_ms": 6.8003599643707275,
+      "gap_ms": 0.9850738189735235,
+      "gap_pct": 14.48561288129808,
+      "manual_ms": 6.530849933624268,
+      "paired_delta_ms": 0.26951003074645996,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1907419999975248
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.13)",
+            0.7759020000007003
+          ],
+          [
+            "FSDP::pre_backward (blocks.13)",
+            0.5613519999994896
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1689379999982192
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.13)",
+            0.7749510000003502
+          ],
+          [
+            "FSDP::pre_backward (blocks.13)",
+            0.5628780000011903
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.12",
+      "additive_ms": 4.849990483165409,
+      "measured_ms": 6.827660083770752,
+      "gap_ms": 1.977669600605343,
+      "gap_pct": 28.965554470209124,
+      "manual_ms": 8.958849906921387,
+      "paired_delta_ms": -2.1311898231506348,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2010039999990259
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.12)",
+            0.7618320000006351
+          ],
+          [
+            "FSDP::pre_backward (blocks.12)",
+            0.568166000000434
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2210729999982286
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.12)",
+            0.7738870000008028
+          ],
+          [
+            "FSDP::pre_backward (blocks.12)",
+            0.5710069999990519
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.11",
+      "additive_ms": 5.789614908068206,
+      "measured_ms": 6.82492995262146,
+      "gap_ms": 1.0353150445532542,
+      "gap_pct": 15.169606893263264,
+      "manual_ms": 6.502019882202148,
+      "paired_delta_ms": 0.3229100704193115,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2437399999999905
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.11)",
+            0.821605000000447
+          ],
+          [
+            "FSDP::pre_backward (blocks.11)",
+            0.5635119999984745
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1808539999995848
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.11)",
+            0.8265539999997709
+          ],
+          [
+            "FSDP::pre_backward (blocks.11)",
+            0.567618999999715
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.10",
+      "additive_ms": 4.871597768413417,
+      "measured_ms": 6.847490072250366,
+      "gap_ms": 1.9758923038369494,
+      "gap_pct": 28.855716225778917,
+      "manual_ms": 8.943359851837158,
+      "paired_delta_ms": -2.095869779586792,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1632730000000446
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.10)",
+            0.783103000000352
+          ],
+          [
+            "FSDP::pre_backward (blocks.10)",
+            0.5642160000009462
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1866550000021236
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.10)",
+            0.7773330000001006
+          ],
+          [
+            "FSDP::pre_backward (blocks.10)",
+            0.564305999998236
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.9",
+      "additive_ms": 5.827957022491374,
+      "measured_ms": 6.836489915847778,
+      "gap_ms": 1.0085328933564046,
+      "gap_pct": 14.75220333490887,
+      "manual_ms": 6.545079946517944,
+      "paired_delta_ms": 0.291409969329834,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1921830000008922
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.9)",
+            0.8277669999995269
+          ],
+          [
+            "FSDP::pre_backward (blocks.9)",
+            0.5734390000002458
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1760569999977017
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.9)",
+            0.8170569999990985
+          ],
+          [
+            "FSDP::pre_backward (blocks.9)",
+            0.5750110000008717
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.8",
+      "additive_ms": 4.87673090983001,
+      "measured_ms": 6.8297200202941895,
+      "gap_ms": 1.9529891104641797,
+      "gap_pct": 28.595449076403792,
+      "manual_ms": 8.925760269165039,
+      "paired_delta_ms": -2.0960402488708496,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.0840150000003634
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.8)",
+            0.7522129999999888
+          ],
+          [
+            "FSDP::pre_backward (blocks.8)",
+            0.5703300000005401
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.0937509999978356
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.8)",
+            0.8008949999995529
+          ],
+          [
+            "FSDP::pre_backward (blocks.8)",
+            0.5636380000000354
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.7",
+      "additive_ms": 9.148326756948219,
+      "measured_ms": 10.028669834136963,
+      "gap_ms": 0.8803430771887442,
+      "gap_pct": 8.778263635643,
+      "manual_ms": 6.509880065917969,
+      "paired_delta_ms": 3.518789768218994,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.4181740000005814
+          ],
+          [
+            "MulBackward0",
+            1.26797999999905
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.7)",
+            0.7978769999996294
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.4081109999988695
+          ],
+          [
+            "MulBackward0",
+            1.2956700000001582
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.7)",
+            0.7671059999992139
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.6",
+      "additive_ms": 8.300149347075498,
+      "measured_ms": 10.308340072631836,
+      "gap_ms": 2.0081907255563376,
+      "gap_pct": 19.48122308157053,
+      "manual_ms": 8.901579856872559,
+      "paired_delta_ms": 1.4067602157592773,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.4033760000001636
+          ],
+          [
+            "MulBackward0",
+            1.2536390000015962
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.6)",
+            0.7695760000001174
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.3976079999979119
+          ],
+          [
+            "MulBackward0",
+            1.2814270000010728
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.6)",
+            0.7733819999997504
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.5",
+      "additive_ms": 5.78450388576709,
+      "measured_ms": 7.439130067825317,
+      "gap_ms": 1.6546261820582275,
+      "gap_pct": 22.242199920856134,
+      "manual_ms": 6.496279954910278,
+      "paired_delta_ms": 0.9428501129150391,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.6057789999980012
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.5)",
+            0.764037000000244
+          ],
+          [
+            "FSDP::pre_backward (blocks.5)",
+            0.6256749999998137
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            2.1698500000007916
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.5)",
+            0.7749479999996256
+          ],
+          [
+            "FSDP::pre_backward (blocks.5)",
+            0.621253000000026
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.4",
+      "additive_ms": 8.32451094008047,
+      "measured_ms": 10.369339942932129,
+      "gap_ms": 2.0448290028516585,
+      "gap_pct": 19.719953382813333,
+      "manual_ms": 8.922200202941895,
+      "paired_delta_ms": 1.4471397399902344,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3880590000031514
+          ],
+          [
+            "MulBackward0",
+            1.253141999997897
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.4)",
+            0.7636310000000521
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.4098409999993162
+          ],
+          [
+            "MulBackward0",
+            1.2767230000009295
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.4)",
+            0.787875
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.3",
+      "additive_ms": 5.80082561438825,
+      "measured_ms": 7.0326502323150635,
+      "gap_ms": 1.2318246179268133,
+      "gap_pct": 17.515795286769315,
+      "manual_ms": 6.514610052108765,
+      "paired_delta_ms": 0.5180401802062988,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1380799999989104
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.3)",
+            0.7657409999999217
+          ],
+          [
+            "FSDP::pre_backward (blocks.3)",
+            0.5904420000002719
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1385109999985434
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.3)",
+            0.7874979999994394
+          ],
+          [
+            "FSDP::pre_backward (blocks.3)",
+            0.5624749999996275
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.2",
+      "additive_ms": 8.324876467897731,
+      "measured_ms": 10.020769596099854,
+      "gap_ms": 1.6958931282021226,
+      "gap_pct": 16.923781271871324,
+      "manual_ms": 8.921849727630615,
+      "paired_delta_ms": 1.0989198684692383,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3945349999978207
+          ],
+          [
+            "MulBackward0",
+            1.2680030000009574
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.2)",
+            0.7964910000001546
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.3945329999981908
+          ],
+          [
+            "MulBackward0",
+            1.2708149999983145
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.2)",
+            0.7843530000005848
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.1",
+      "additive_ms": 5.786534070866387,
+      "measured_ms": 7.056080102920532,
+      "gap_ms": 1.2695460320541452,
+      "gap_pct": 17.99222817111552,
+      "manual_ms": 6.498559951782227,
+      "paired_delta_ms": 0.5575201511383057,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.10419299999834
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.1)",
+            0.7757229999995324
+          ],
+          [
+            "FSDP::pre_backward (blocks.1)",
+            0.565855999999214
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.0773679999990855
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.1)",
+            0.7783570000007749
+          ],
+          [
+            "FSDP::pre_backward (blocks.1)",
+            0.5609060000004247
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "student.backward.0",
+      "additive_ms": 6.4508171498176194,
+      "measured_ms": 10.259429931640625,
+      "gap_ms": 3.8086127818230056,
+      "gap_pct": 37.12304491770096,
+      "manual_ms": 9.850600242614746,
+      "paired_delta_ms": 0.4088296890258789,
+      "top_cpu_ops_ms": [
+        [],
+        []
+      ]
+    },
+    {
+      "event": "critic.backward.29",
+      "additive_ms": 7.337909286515008,
+      "measured_ms": 11.822100281715393,
+      "gap_ms": 4.484190995200385,
+      "gap_pct": 37.93057822505399,
+      "manual_ms": 8.240829974412918,
+      "paired_delta_ms": 3.581270307302475,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            3.2592670000032524
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.29)",
+            0.7644110000017099
+          ],
+          [
+            "FSDP::pre_backward (blocks.29)",
+            0.5724499999999534
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            3.248543999999296
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.29)",
+            0.7663879999998026
+          ],
+          [
+            "FSDP::pre_backward (blocks.29)",
+            0.5991690000011586
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.28",
+      "additive_ms": 4.621802627736077,
+      "measured_ms": 7.167790174484253,
+      "gap_ms": 2.545987546748176,
+      "gap_pct": 35.51983923596603,
+      "manual_ms": 8.90719985961914,
+      "paired_delta_ms": -1.7394096851348877,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1553750000025613
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.28)",
+            0.776308000001125
+          ],
+          [
+            "FSDP::pre_backward (blocks.28)",
+            0.5290860000001266
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.199771000000881
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.28)",
+            0.7975639999990817
+          ],
+          [
+            "FSDP::pre_backward (blocks.28)",
+            0.5630179999999236
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.27",
+      "additive_ms": 5.796756327764458,
+      "measured_ms": 14.071810483932495,
+      "gap_ms": 8.275054156168038,
+      "gap_pct": 58.805895414926724,
+      "manual_ms": 6.510040044784546,
+      "paired_delta_ms": 7.561770439147949,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1667079999989367
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.27)",
+            0.7634769999999553
+          ],
+          [
+            "FSDP::pre_backward (blocks.27)",
+            0.5284789999998175
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            16.248741000002717
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.27)",
+            0.784271000000881
+          ],
+          [
+            "FSDP::pre_backward (blocks.27)",
+            0.5480830000003334
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.26",
+      "additive_ms": 4.632780421850758,
+      "measured_ms": 6.935290098190308,
+      "gap_ms": 2.3025096763395494,
+      "gap_pct": 33.19990431172253,
+      "manual_ms": 8.910840034484863,
+      "paired_delta_ms": -1.9755499362945557,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1574529999988152
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.26)",
+            0.7655799999996088
+          ],
+          [
+            "FSDP::pre_backward (blocks.26)",
+            0.5900319999998901
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2199819999975152
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.26)",
+            0.7756929999999702
+          ],
+          [
+            "FSDP::pre_backward (blocks.26)",
+            0.6073759999994655
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.25",
+      "additive_ms": 5.776855079017892,
+      "measured_ms": 6.722939968109131,
+      "gap_ms": 0.9460848890912388,
+      "gap_pct": 14.07248753639148,
+      "manual_ms": 6.487689971923828,
+      "paired_delta_ms": 0.23524999618530273,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1412299999981186
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.25)",
+            0.7690100000000093
+          ],
+          [
+            "FSDP::pre_backward (blocks.25)",
+            0.5356700000003911
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2639620000005234
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.25)",
+            0.7827560000000522
+          ],
+          [
+            "FSDP::pre_backward (blocks.25)",
+            0.5454019999988378
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.24",
+      "additive_ms": 4.6456879186683535,
+      "measured_ms": 6.759469985961914,
+      "gap_ms": 2.1137820672935606,
+      "gap_pct": 31.271417310580105,
+      "manual_ms": 8.918409824371338,
+      "paired_delta_ms": -2.158939838409424,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3068850000002419
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.24)",
+            0.7567619999996387
+          ],
+          [
+            "FSDP::pre_backward (blocks.24)",
+            0.5876640000001062
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.3361080000021033
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.24)",
+            0.782070000000298
+          ],
+          [
+            "FSDP::pre_backward (blocks.24)",
+            0.5969330000001937
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.23",
+      "additive_ms": 5.80338101939089,
+      "measured_ms": 6.984310150146484,
+      "gap_ms": 1.1809291307555947,
+      "gap_pct": 16.90831457034918,
+      "manual_ms": 6.51747989654541,
+      "paired_delta_ms": 0.4668302536010742,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2127490000010002
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.23)",
+            0.7719349999993574
+          ],
+          [
+            "FSDP::pre_backward (blocks.23)",
+            0.5329630000006873
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1692509999994654
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.23)",
+            0.7632139999994543
+          ],
+          [
+            "FSDP::pre_backward (blocks.23)",
+            0.552111999999499
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.22",
+      "additive_ms": 4.634191056959589,
+      "measured_ms": 6.957959890365601,
+      "gap_ms": 2.323768833406011,
+      "gap_pct": 33.39727262043631,
+      "manual_ms": 8.931800365447998,
+      "paired_delta_ms": -1.9738404750823975,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.100757999998052
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.22)",
+            0.7778999999999069
+          ],
+          [
+            "FSDP::pre_backward (blocks.22)",
+            0.5441130000015255
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.143266999999527
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.22)",
+            0.7852819999994245
+          ],
+          [
+            "FSDP::pre_backward (blocks.22)",
+            0.5595800000003074
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.21",
+      "additive_ms": 5.796658247087278,
+      "measured_ms": 6.6517698764801025,
+      "gap_ms": 0.8551116293928249,
+      "gap_pct": 12.855400070534637,
+      "manual_ms": 6.509929895401001,
+      "paired_delta_ms": 0.14183998107910156,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1706949999984353
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.21)",
+            0.7670039999999572
+          ],
+          [
+            "FSDP::pre_backward (blocks.21)",
+            0.5332920000001322
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.357871999999974
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.21)",
+            0.7590649999999441
+          ],
+          [
+            "FSDP::pre_backward (blocks.21)",
+            0.5518699999996461
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.20",
+      "additive_ms": 4.602895780382079,
+      "measured_ms": 706.5440673828125,
+      "gap_ms": 701.9411716024305,
+      "gap_pct": 99.34853380095142,
+      "manual_ms": 8.902369976043701,
+      "paired_delta_ms": 697.6416974067688,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            699.9021880000013
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.20)",
+            1.1304470000001603
+          ],
+          [
+            "FSDP::pre_backward (blocks.20)",
+            0.5932150000000839
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            698.7010669999992
+          ],
+          [
+            "autograd::engine::evaluate_function: UnbindBackward0",
+            2.6820439999997614
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.20)",
+            1.239479999999283
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.19",
+      "additive_ms": 5.791244490921097,
+      "measured_ms": 8.715650081634521,
+      "gap_ms": 2.924405590713424,
+      "gap_pct": 33.553499318148226,
+      "manual_ms": 6.503849983215332,
+      "paired_delta_ms": 2.2118000984191895,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.3939300000006332
+          ],
+          [
+            "FSDP::pre_backward (blocks.19)",
+            0.9484310000003315
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.19)",
+            0.8308600000003353
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.449521999998018
+          ],
+          [
+            "FSDP::pre_backward (blocks.19)",
+            0.9870480000008829
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.19)",
+            0.8665800000010059
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.18",
+      "additive_ms": 4.5933885646023755,
+      "measured_ms": 7.1919097900390625,
+      "gap_ms": 2.598521225436687,
+      "gap_pct": 36.13117101434852,
+      "manual_ms": 8.90349006652832,
+      "paired_delta_ms": -1.7115802764892578,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.182106000002474
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.18)",
+            0.7817349999989383
+          ],
+          [
+            "FSDP::pre_backward (blocks.18)",
+            0.6141759999976494
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.289317000000272
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.18)",
+            0.786679000000935
+          ],
+          [
+            "FSDP::pre_backward (blocks.18)",
+            0.6226660000006669
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.17",
+      "additive_ms": 5.793782275369178,
+      "measured_ms": 7.194599866867065,
+      "gap_ms": 1.400817591497887,
+      "gap_pct": 19.470403044219356,
+      "manual_ms": 6.506700038909912,
+      "paired_delta_ms": 0.6878998279571533,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.2552500000004658
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.17)",
+            0.7692750000027009
+          ],
+          [
+            "FSDP::pre_backward (blocks.17)",
+            0.5613209999995307
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1644669999950565
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.17)",
+            0.7594829999986105
+          ],
+          [
+            "FSDP::pre_backward (blocks.17)",
+            0.5648130000010133
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.16",
+      "additive_ms": 4.644927342567044,
+      "measured_ms": 6.988679885864258,
+      "gap_ms": 2.3437525432972137,
+      "gap_pct": 33.5364129073623,
+      "manual_ms": 8.938460350036621,
+      "paired_delta_ms": -1.9497804641723633,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1380210000034423
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.16)",
+            0.7626269999993965
+          ],
+          [
+            "FSDP::pre_backward (blocks.16)",
+            0.5627180000008084
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.2497010000022128
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.16)",
+            0.7612869999995455
+          ],
+          [
+            "FSDP::pre_backward (blocks.16)",
+            0.5636450000004843
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.15",
+      "additive_ms": 5.804752238208871,
+      "measured_ms": 6.853640079498291,
+      "gap_ms": 1.04888784128942,
+      "gap_pct": 15.304098685120945,
+      "manual_ms": 6.519019842147827,
+      "paired_delta_ms": 0.33462023735046387,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.0978569999993777
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.15)",
+            0.755031999998726
+          ],
+          [
+            "FSDP::pre_backward (blocks.15)",
+            0.5716560000008903
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.077995000000112
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.15)",
+            0.7821430000015535
+          ],
+          [
+            "FSDP::pre_backward (blocks.15)",
+            0.5639160000034608
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.14",
+      "additive_ms": 4.648840315591829,
+      "measured_ms": 6.700019836425781,
+      "gap_ms": 2.0511795208339523,
+      "gap_pct": 30.61452907471066,
+      "manual_ms": 8.927850246429443,
+      "paired_delta_ms": -2.227830410003662,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1590290000019596
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.14)",
+            0.7756149999992922
+          ],
+          [
+            "FSDP::pre_backward (blocks.14)",
+            0.6173879999998025
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1538379999962634
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.14)",
+            0.7639500000025146
+          ],
+          [
+            "FSDP::pre_backward (blocks.14)",
+            0.6130230000000447
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.13",
+      "additive_ms": 5.801867350065574,
+      "measured_ms": 6.749699831008911,
+      "gap_ms": 0.9478324809433367,
+      "gap_pct": 14.042587147192581,
+      "manual_ms": 6.515779972076416,
+      "paired_delta_ms": 0.23391985893249512,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1385949999992735
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.13)",
+            0.7718230000007897
+          ],
+          [
+            "FSDP::pre_backward (blocks.13)",
+            0.5560400000009685
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.335786999998614
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.13)",
+            0.75599299999699
+          ],
+          [
+            "FSDP::pre_backward (blocks.13)",
+            0.5661380000030621
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.12",
+      "additive_ms": 4.628635328566367,
+      "measured_ms": 6.826050043106079,
+      "gap_ms": 2.197414714539712,
+      "gap_pct": 32.191599836848184,
+      "manual_ms": 8.90645980834961,
+      "paired_delta_ms": -2.0804097652435303,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.137356999999378
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.12)",
+            0.7419350000014528
+          ],
+          [
+            "FSDP::pre_backward (blocks.12)",
+            0.5614050000016577
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1711340000052008
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.12)",
+            0.7754280000003054
+          ],
+          [
+            "FSDP::pre_backward (blocks.12)",
+            0.558214999999851
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.11",
+      "additive_ms": 5.77341800939982,
+      "measured_ms": 6.795819997787476,
+      "gap_ms": 1.0224019883876556,
+      "gap_pct": 15.044571350043416,
+      "manual_ms": 6.483829975128174,
+      "paired_delta_ms": 0.31199002265930176,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1827259999988604
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.11)",
+            0.7489440000010654
+          ],
+          [
+            "FSDP::pre_backward (blocks.11)",
+            0.561539000001736
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1858930000015537
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.11)",
+            0.7735880000004545
+          ],
+          [
+            "FSDP::pre_backward (blocks.11)",
+            0.5555659999996424
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.10",
+      "additive_ms": 4.63349291155162,
+      "measured_ms": 6.760289907455444,
+      "gap_ms": 2.126796995903824,
+      "gap_pct": 31.46014483133823,
+      "manual_ms": 8.915329933166504,
+      "paired_delta_ms": -2.1550400257110596,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1777060000011699
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.10)",
+            0.7710760000017471
+          ],
+          [
+            "FSDP::pre_backward (blocks.10)",
+            0.5690299999988638
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1706330000013114
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.10)",
+            0.7790849999985657
+          ],
+          [
+            "FSDP::pre_backward (blocks.10)",
+            0.5558830000003799
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.9",
+      "additive_ms": 5.819097280281924,
+      "measured_ms": 6.749230146408081,
+      "gap_ms": 0.930132866126157,
+      "gap_pct": 13.781317956999448,
+      "manual_ms": 6.535130023956299,
+      "paired_delta_ms": 0.21410012245178223,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.157264000001829
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.9)",
+            0.7369690000005067
+          ],
+          [
+            "FSDP::pre_backward (blocks.9)",
+            0.5638070000009612
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1995960000022314
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.9)",
+            0.7757050000010058
+          ],
+          [
+            "FSDP::pre_backward (blocks.9)",
+            0.5551140000005252
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.8",
+      "additive_ms": 4.6416021628041415,
+      "measured_ms": 6.754460096359253,
+      "gap_ms": 2.1128579335551114,
+      "gap_pct": 31.280929984233246,
+      "manual_ms": 8.933209896087646,
+      "paired_delta_ms": -2.1787497997283936,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.0866900000008755
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.8)",
+            0.7615000000004657
+          ],
+          [
+            "FSDP::pre_backward (blocks.8)",
+            0.5695420000008308
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.085538999998011
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.8)",
+            0.7756270000017248
+          ],
+          [
+            "FSDP::pre_backward (blocks.8)",
+            0.5521139999968
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.7",
+      "additive_ms": 5.786169134320774,
+      "measured_ms": 6.61584997177124,
+      "gap_ms": 0.8296808374504661,
+      "gap_pct": 12.540804900210553,
+      "manual_ms": 6.498150110244751,
+      "paired_delta_ms": 0.11769986152648926,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1372719999998808
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.7)",
+            0.7729660000009462
+          ],
+          [
+            "FSDP::pre_backward (blocks.7)",
+            0.5570169999995269
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.140268999999389
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.7)",
+            0.7749640000006184
+          ],
+          [
+            "FSDP::pre_backward (blocks.7)",
+            0.5680869999998249
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.6",
+      "additive_ms": 4.605472933805805,
+      "measured_ms": 6.742740154266357,
+      "gap_ms": 2.1372672204605525,
+      "gap_pct": 31.697309573886397,
+      "manual_ms": 8.916069984436035,
+      "paired_delta_ms": -2.1733298301696777,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.15096700000111
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.6)",
+            0.7465760000008158
+          ],
+          [
+            "FSDP::pre_backward (blocks.6)",
+            0.5551019999985584
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1863329999996348
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.6)",
+            0.773290000000503
+          ],
+          [
+            "FSDP::pre_backward (blocks.6)",
+            0.5515169999999926
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.5",
+      "additive_ms": 5.784859905887504,
+      "measured_ms": 6.744629859924316,
+      "gap_ms": 0.9597699540368128,
+      "gap_pct": 14.23013529236996,
+      "manual_ms": 6.496679782867432,
+      "paired_delta_ms": 0.24795007705688477,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.185936999998521
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.5)",
+            0.7509159999997355
+          ],
+          [
+            "FSDP::pre_backward (blocks.5)",
+            0.5613900000010618
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1427710000011138
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.5)",
+            0.7859400000004098
+          ],
+          [
+            "FSDP::pre_backward (blocks.5)",
+            0.5532500000009313
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.4",
+      "additive_ms": 4.632320757723045,
+      "measured_ms": 6.687550067901611,
+      "gap_ms": 2.055229310178566,
+      "gap_pct": 30.73217081458721,
+      "manual_ms": 8.914289951324463,
+      "paired_delta_ms": -2.2267398834228516,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1407119999979622
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.4)",
+            0.770109999998007
+          ],
+          [
+            "FSDP::pre_backward (blocks.4)",
+            0.564968000001274
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1736610000007786
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.4)",
+            0.7762870000009425
+          ],
+          [
+            "FSDP::pre_backward (blocks.4)",
+            0.5547880000006408
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.3",
+      "additive_ms": 5.816773277742762,
+      "measured_ms": 6.724649906158447,
+      "gap_ms": 0.9078766284156856,
+      "gap_pct": 13.500727042819738,
+      "manual_ms": 6.532520055770874,
+      "paired_delta_ms": 0.19212985038757324,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1612619999968445
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.3)",
+            0.7607050000000745
+          ],
+          [
+            "FSDP::pre_backward (blocks.3)",
+            0.5567980000004172
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1535979999992998
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.3)",
+            0.7565049999984913
+          ],
+          [
+            "FSDP::pre_backward (blocks.3)",
+            0.5612889999998734
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.2",
+      "additive_ms": 4.780193377982092,
+      "measured_ms": 6.702659845352173,
+      "gap_ms": 1.9224664673700804,
+      "gap_pct": 28.682142786988912,
+      "manual_ms": 8.912679672241211,
+      "paired_delta_ms": -2.210019826889038,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1976369999945164
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.2)",
+            0.7564469999996946
+          ],
+          [
+            "FSDP::pre_backward (blocks.2)",
+            0.5671480000000447
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.1631710000005553
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.2)",
+            0.7652140000015497
+          ],
+          [
+            "FSDP::pre_backward (blocks.2)",
+            0.5520810000025668
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.1",
+      "additive_ms": 5.786783518476098,
+      "measured_ms": 6.813770055770874,
+      "gap_ms": 1.0269865372947757,
+      "gap_pct": 15.07222182270411,
+      "manual_ms": 6.498840093612671,
+      "paired_delta_ms": 0.3149299621582031,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "empty_tensor",
+            1.1088759999987672
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.1)",
+            0.7619929999965243
+          ],
+          [
+            "FSDP::pre_backward (blocks.1)",
+            0.5633380000009202
+          ]
+        ],
+        [
+          [
+            "empty_tensor",
+            1.0944350000009873
+          ],
+          [
+            "FSDP::post_backward_reduce (blocks.1)",
+            0.7627680000010878
+          ],
+          [
+            "FSDP::pre_backward (blocks.1)",
+            0.5604150000009686
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "critic.backward.0",
+      "additive_ms": 6.029874830037986,
+      "measured_ms": 10.845570087432861,
+      "gap_ms": 4.815695257394875,
+      "gap_pct": 44.4024170105635,
+      "manual_ms": 9.84660005569458,
+      "paired_delta_ms": 0.9989700317382812,
+      "top_cpu_ops_ms": [
+        [],
+        []
+      ]
+    },
+    {
+      "event": "clipping",
+      "additive_ms": 73.11099097937046,
+      "measured_ms": 84.15925979614258,
+      "gap_ms": 11.048268816772122,
+      "gap_pct": 13.127811299118052,
+      "manual_ms": 82.10720825195312,
+      "paired_delta_ms": 2.052051544189453,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::mul_",
+            52.52785000000188
+          ],
+          [
+            "aclnnInplaceMul",
+            3.3614829999990747
+          ],
+          [
+            "empty_tensor",
+            3.2108030000091525
+          ]
+        ],
+        [
+          [
+            "aten::mul_",
+            53.374020000014035
+          ],
+          [
+            "aten::_foreach_norm",
+            3.3946509999963457
+          ],
+          [
+            "aclnnInplaceMul",
+            3.3636099999914886
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "optimizer.critic",
+      "additive_ms": 99.3687015052721,
+      "measured_ms": 111.21162033081055,
+      "gap_ms": 11.842918825538447,
+      "gap_pct": 10.648994044246862,
+      "manual_ms": 111.59589767456055,
+      "paired_delta_ms": -0.38427734375,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "Optimizer.step#AdamW.step",
+            13.699800999995787
+          ],
+          [
+            "aten::_foreach_sqrt",
+            9.671762000003364
+          ],
+          [
+            "aten::_foreach_addcdiv_",
+            5.922636999993119
+          ]
+        ],
+        [
+          [
+            "Optimizer.step#AdamW.step",
+            14.355550999987404
+          ],
+          [
+            "aten::_foreach_sqrt",
+            8.886727000004612
+          ],
+          [
+            "aten::_foreach_addcdiv_",
+            6.111438000007532
+          ]
+        ]
+      ]
+    },
+    {
+      "event": "optimizer.student",
+      "additive_ms": 94.96649084987885,
+      "measured_ms": 106.38475799560547,
+      "gap_ms": 11.418267145726617,
+      "gap_pct": 10.732991605995178,
+      "manual_ms": 106.6520004272461,
+      "paired_delta_ms": -0.267242431640625,
+      "top_cpu_ops_ms": [
+        [
+          [
+            "aten::_local_scalar_dense",
+            97.4038020000006
+          ],
+          [
+            "Optimizer.step#AdamW.step",
+            13.548823000003583
+          ],
+          [
+            "aten::_foreach_sqrt",
+            8.290006999988108
+          ]
+        ],
+        [
+          [
+            "aten::_local_scalar_dense",
+            96.7387479999955
+          ],
+          [
+            "Optimizer.step#AdamW.step",
+            13.758776000011247
+          ],
+          [
+            "aten::_foreach_sqrt",
+            8.295545000007841
+          ]
+        ]
+      ]
+    }
+  ],
+  "predicted_step_ms": 1192.4573432654145,
+  "auto_stream_ms": 2960.0764852762222,
+  "manual_stream_ms": 1467.9639529287815
+}

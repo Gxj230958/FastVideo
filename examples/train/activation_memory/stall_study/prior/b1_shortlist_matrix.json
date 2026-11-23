@@ -1,0 +1,442 @@
+{
+  "budget_bytes": 57982058496,
+  "winner": {
+    "student": 24,
+    "critic": 16,
+    "predicted_peak_bytes": 57061059584,
+    "feasible": true,
+    "mean_ms": 1350.1222756691277,
+    "min_ms": 1297.4396410863847,
+    "max_ms": 1552.1199591457844,
+    "peak_bytes": 57061059584,
+    "source": "candidate_24_16.json"
+  },
+  "matrix": [
+    {
+      "student": 0,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1493.3652881532907,
+      "min_ms": 1422.85055690445,
+      "max_ms": 1770.7275450229645,
+      "peak_bytes": 57061059584,
+      "source": "candidate_0_0.json"
+    },
+    {
+      "student": 0,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 0,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1478.933070646599,
+      "min_ms": 1397.3477031104267,
+      "max_ms": 1777.409034082666,
+      "peak_bytes": 57061059584,
+      "source": "candidate_0_8.json"
+    },
+    {
+      "student": 0,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 0,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1418.680709367618,
+      "min_ms": 1364.3506558146328,
+      "max_ms": 1623.098273994401,
+      "peak_bytes": 57061059584,
+      "source": "candidate_0_16.json"
+    },
+    {
+      "student": 0,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 0,
+      "critic": 24,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1418.1263231672347,
+      "min_ms": 1341.3266350980848,
+      "max_ms": 1709.9758838303387,
+      "peak_bytes": 57061059584,
+      "source": "candidate_0_24.json"
+    },
+    {
+      "student": 0,
+      "critic": 30,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1413.4006069973111,
+      "min_ms": 1329.7345899045467,
+      "max_ms": 1734.2783398926258,
+      "peak_bytes": 57061059584,
+      "source": "candidate_0_30.json"
+    },
+    {
+      "student": 5,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 24,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 5,
+      "critic": 30,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 24,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 10,
+      "critic": 30,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 15,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1457.7241433784366,
+      "min_ms": 1377.7115389239043,
+      "max_ms": 1766.299074050039,
+      "peak_bytes": 57061059584,
+      "source": "candidate_15_0.json"
+    },
+    {
+      "student": 15,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 15,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1425.6545956246555,
+      "min_ms": 1345.7896609324962,
+      "max_ms": 1726.568809011951,
+      "peak_bytes": 57061059584,
+      "source": "candidate_15_8.json"
+    },
+    {
+      "student": 15,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 15,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1387.962955981493,
+      "min_ms": 1312.2906920034438,
+      "max_ms": 1676.4891350176185,
+      "peak_bytes": 57061059584,
+      "source": "candidate_15_16.json"
+    },
+    {
+      "student": 15,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 15,
+      "critic": 24,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1361.1653889529407,
+      "min_ms": 1289.2320689279586,
+      "max_ms": 1639.1992229036987,
+      "peak_bytes": 57061059584,
+      "source": "candidate_15_24.json"
+    },
+    {
+      "student": 15,
+      "critic": 30,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 2952.999426657334,
+      "min_ms": 2904.440405080095,
+      "max_ms": 2994.2103039938956,
+      "peak_bytes": 57061059584,
+      "source": "candidate_15_30.json"
+    },
+    {
+      "student": 20,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 24,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 20,
+      "critic": 30,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 24,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1418.9487106632441,
+      "min_ms": 1340.675343060866,
+      "max_ms": 1706.1923400033265,
+      "peak_bytes": 57061059584,
+      "source": "candidate_24_0.json"
+    },
+    {
+      "student": 24,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 24,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1405.7967224624008,
+      "min_ms": 1318.6795820947737,
+      "max_ms": 1706.1330971773714,
+      "peak_bytes": 57061059584,
+      "source": "candidate_24_8.json"
+    },
+    {
+      "student": 24,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 24,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1350.1222756691277,
+      "min_ms": 1297.4396410863847,
+      "max_ms": 1552.1199591457844,
+      "peak_bytes": 57061059584,
+      "source": "candidate_24_16.json"
+    },
+    {
+      "student": 24,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 24,
+      "critic": 24,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 2927.2631510626525,
+      "min_ms": 2894.3524069618434,
+      "max_ms": 2984.172464115545,
+      "peak_bytes": 57061059584,
+      "source": "candidate_24_24.json"
+    },
+    {
+      "student": 24,
+      "critic": 30,
+      "predicted_peak_bytes": 58064352256,
+      "feasible": false
+    },
+    {
+      "student": 30,
+      "critic": 0,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1376.2389520183206,
+      "min_ms": 1311.8270218838006,
+      "max_ms": 1611.265457002446,
+      "peak_bytes": 57061059584,
+      "source": "candidate_30_0.json"
+    },
+    {
+      "student": 30,
+      "critic": 4,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 30,
+      "critic": 8,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 1370.2957320027053,
+      "min_ms": 1295.303595950827,
+      "max_ms": 1661.067838780582,
+      "peak_bytes": 57061059584,
+      "source": "candidate_30_8.json"
+    },
+    {
+      "student": 30,
+      "critic": 12,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 30,
+      "critic": 16,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true,
+      "mean_ms": 3004.0000406093895,
+      "min_ms": 2949.728548992425,
+      "max_ms": 3108.4299969952554,
+      "peak_bytes": 57061059584,
+      "source": "candidate_30_16.json"
+    },
+    {
+      "student": 30,
+      "critic": 20,
+      "predicted_peak_bytes": 57061059584,
+      "feasible": true
+    },
+    {
+      "student": 30,
+      "critic": 24,
+      "predicted_peak_bytes": 57865481216,
+      "feasible": true,
+      "mean_ms": 2861.75260161981,
+      "min_ms": 2842.7550620399415,
+      "max_ms": 2893.272783141583,
+      "peak_bytes": 57061059584,
+      "source": "candidate_30_24.json"
+    },
+    {
+      "student": 30,
+      "critic": 30,
+      "predicted_peak_bytes": 59764080128,
+      "feasible": false
+    }
+  ]
+}
