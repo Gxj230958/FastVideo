@@ -92,6 +92,11 @@ class DMD2Method(TrainingMethod):
             dict[str, Any],
             dict[str, LogScalar],
     ]:
+        return self._compute_losses(batch, iteration, student_backward_rounds=None)
+
+    def _compute_losses(
+            self, batch: dict[str, Any], iteration: int, *, student_backward_rounds: int | None
+    ) -> tuple[dict[str, torch.Tensor], dict[str, Any], dict[str, LogScalar]]:
         latents_source: Literal["data", "zeros"] = "data"
         if self._rollout_mode == "simulate":
             latents_source = "zeros"
@@ -117,6 +122,10 @@ class DMD2Method(TrainingMethod):
                 training_batch.attn_metadata_vsa,
             )
             generator_loss = self._dmd_loss(generator_pred_x0, training_batch)
+            if student_backward_rounds is not None:
+                self.student.backward(generator_loss, student_ctx, grad_accum_rounds=student_backward_rounds)
+                generator_loss = generator_loss.detach()
+                del generator_pred_x0
 
         (
             fake_score_loss,
@@ -698,3 +707,18 @@ class DMD2Method(TrainingMethod):
             (generator_pred_x0.float() - grad.float()).detach(),
         )
         return loss
+
+
+class SequentialDMD2Method(DMD2Method):
+    """Release student activations before constructing the critic's training graph."""
+
+    def train_microbatch(
+            self,
+            batch: dict[str, Any],
+            iteration: int,
+            *,
+            grad_accum_rounds: int = 1) -> tuple[dict[str, torch.Tensor], dict[str, Any], dict[str, LogScalar]]:
+        rounds = max(1, int(grad_accum_rounds))
+        losses, outputs, metrics = self._compute_losses(batch, iteration, student_backward_rounds=rounds)
+        self.critic.backward(losses["fake_score_loss"], outputs["_fv_backward"]["critic_ctx"], grad_accum_rounds=rounds)
+        return losses, outputs, metrics

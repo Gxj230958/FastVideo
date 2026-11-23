@@ -8,6 +8,7 @@ from typing import Any
 
 import torch
 
+from fastvideo.train.methods.base import TrainingMethod
 from fastvideo.train.callbacks.validation import ValidationCallback
 from fastvideo.train.trainer import Trainer
 from fastvideo.train.utils.training_config import TrainingConfig
@@ -38,6 +39,8 @@ class _DummyTracker:
 
 
 class _DummyMethod:
+    train_microbatch = TrainingMethod.train_microbatch
+
 
     def __init__(self) -> None:
         self.weight = torch.nn.Parameter(torch.tensor(1.0))

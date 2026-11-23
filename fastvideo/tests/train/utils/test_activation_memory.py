@@ -183,7 +183,9 @@ def test_auxiliary_planning_options_require_device_budget(options):
 
 def test_wan_profile_requires_budget_before_device_setup(monkeypatch, capsys):
     monkeypatch.setitem(sys.modules, "torch_npu", ModuleType("torch_npu"))
-    profile_wan = load_source("activation_memory_profile_wan", "examples/train/activation_memory/profile_wan.py")
+    script = Path("examples/train/activation_memory/profile_wan.py")
+    monkeypatch.syspath_prepend(Path(__file__).parents[4] / script.parent)
+    profile_wan = load_source("activation_memory_profile_wan", script)
     monkeypatch.setattr(sys, "argv", ["profile_wan", "benchmark", "--model", "unused", "--training-sample", "unused",
                                       "--profile", "measured.json", "--output", "unused"])
     with pytest.raises(SystemExit) as error:
@@ -356,6 +358,13 @@ def test_fingerprint_warns_when_metadata_missing_or_stale():
     stale = _fingerprint_profile({"model": "wan-1.3b", "world_size": 1, "fastvideo_version": "0.0.0"})
     warnings = memory.check_profile_fingerprint(stale, model_paths={"student": "wan-1.3b"}, num_gpus=1)
     assert any("0.0.0" in message for message in warnings)
+
+
+def test_sequential_dmd2_rejects_joint_profile_before_writing_plan(budget_config, tmp_path):
+    budget_config.method["_target_"] = "fastvideo.train.methods.distribution_matching.dmd2.SequentialDMD2Method"
+    with pytest.raises(ValueError, match="original event order"):
+        builder.build_from_config(budget_config)
+    assert not (tmp_path / "plan.json").exists()
 
 
 def test_builder_rejects_profile_from_another_world_size(budget_config, tmp_path):

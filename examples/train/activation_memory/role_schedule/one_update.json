@@ -1,0 +1,57 @@
+{
+  "original": {
+    "losses": {
+      "total_loss": 0.8433800935745239,
+      "generator_loss": 0.7476769685745239,
+      "fake_score_loss": 0.095703125
+    },
+    "gradient_norms": {
+      "student": 2.686264991760254,
+      "critic": 2.4586520195007324
+    }
+  },
+  "sequential": {
+    "losses": {
+      "total_loss": 0.8433800935745239,
+      "generator_loss": 0.7476769685745239,
+      "fake_score_loss": 0.095703125
+    },
+    "gradient_norms": {
+      "student": 2.686264991760254,
+      "critic": 2.4586520195007324
+    }
+  },
+  "tensors": {
+    "gradients": {
+      "tensors": 1650,
+      "elements": 2837993600,
+      "unequal": 0,
+      "max_abs": 0.0
+    },
+    "parameters": {
+      "tensors": 1650,
+      "elements": 2837993600,
+      "unequal": 0,
+      "max_abs": 0.0
+    },
+    "step": {
+      "tensors": 1650,
+      "elements": 1650,
+      "unequal": 0,
+      "max_abs": 0.0
+    },
+    "exp_avg": {
+      "tensors": 1650,
+      "elements": 2837993600,
+      "unequal": 0,
+      "max_abs": 0.0
+    },
+    "exp_avg_sq": {
+      "tensors": 1650,
+      "elements": 2837993600,
+      "unequal": 0,
+      "max_abs": 0.0
+    }
+  },
+  "exact": true
+}

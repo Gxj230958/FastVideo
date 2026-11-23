@@ -8,6 +8,7 @@ from typing import Any
 
 import torch
 
+from fastvideo.train.methods.base import TrainingMethod
 from fastvideo.train.trainer import Trainer
 from fastvideo.train.utils.performance import TrainingPerformanceMonitor
 from fastvideo.train.utils.training_config import TrainingConfig
@@ -55,6 +56,8 @@ class _DummyTracker:
 
 
 class _PerformanceMethod:
+    train_microbatch = TrainingMethod.train_microbatch
+
 
     def __init__(self) -> None:
         self._role_models = {"student": _FakeRoleModel()}

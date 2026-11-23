@@ -1,5 +1,7 @@
 # Wan activation-memory profiling
 
+[Avoiding allocation retries by scheduling student backward earlier](role_schedule/)
+
 These examples measure public Wan2.1-1.3B through FastVideo's WanModel/FSDP2
 adapter. They collect block costs and full-training memory lifetimes, export a
 profile, and execute the resulting activation plan. The measured workload uses

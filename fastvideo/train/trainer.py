@@ -265,16 +265,7 @@ class Trainer:
                     elif grad_accum > 1 and tc.loop.fsdp_defer_backward_finalize:
                         method.set_is_last_backward(step, accum_iter == grad_accum - 1)
                     batch = next(data_stream)
-                    loss_map, outputs, step_metrics = (method.single_train_step(
-                        batch,
-                        step,
-                    ))
-
-                    method.backward(
-                        loss_map,
-                        outputs,
-                        grad_accum_rounds=grad_accum,
-                    )
+                    loss_map, outputs, step_metrics = method.train_microbatch(batch, step, grad_accum_rounds=grad_accum)
 
                     for k, v in loss_map.items():
                         if isinstance(v, torch.Tensor):

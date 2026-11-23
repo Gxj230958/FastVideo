@@ -31,14 +31,19 @@ def build_from_config(cfg: RunConfig, ) -> tuple[TrainingConfig, TrainingMethod,
     """
     from fastvideo.train.models.base import ModelBase
 
+    method_cls = resolve_target(str(cfg.method["_target_"]))
     memory_policies: dict[str, dict[str, str]] = {}
     memory_config = cfg.training.model
     if memory_config.activation_memory_budget_gib is not None:
         import torch.distributed as dist
 
+        from fastvideo.train.methods.distribution_matching.dmd2 import SequentialDMD2Method
         from fastvideo.train.utils.activation_memory import (MemoryProfile, check_profile_fingerprint,
                                                              plan_activation_memory)
 
+        if isinstance(method_cls, type) and issubclass(method_cls, SequentialDMD2Method):
+            raise ValueError(
+                "Sequential DMD2 requires explicit policies because calibration uses the original event order")
         profile = MemoryProfile.load(memory_config.activation_memory_profile)
         unknown_roles = {block.role for block in profile.blocks} - set(cfg.models)
         if unknown_roles:
@@ -82,10 +87,6 @@ def build_from_config(cfg: RunConfig, ) -> tuple[TrainingConfig, TrainingMethod,
         role_models[role] = model
 
     # --- 2. Build method ---
-    method_cfg = dict(cfg.method)
-    method_target = str(method_cfg.pop("_target_"))
-    method_cls = resolve_target(method_target)
-
     # The student model provides the dataloader.
     student = role_models.get("student")
 

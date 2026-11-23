@@ -60,15 +60,25 @@ def main() -> None:
     diagnostic.add_argument('--allocator-events', action='store_true', help='Sample allocator retries and reserve turnover')
     diagnostic.add_argument('--trace-events', action='store_true', help='Collect CPU operator self times by role event')
     parser.add_argument('--time-phases', action='store_true', help='Synchronize at train and backward boundaries')
+    parser.add_argument('--check-role-schedules', action='store_true', help='Compare one deterministic update of both schedules')
+    parser.add_argument('--sequential-backward', action='store_true',
+                        help='Run student backward before building the critic training graph')
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
     if args.sync_event and not args.trace_events:
         parser.error('--sync-event requires --trace-events')
     if args.layout_file and (args.profile or args.calibrate_from):
         parser.error('--layout-file conflicts with profile selection and calibration')
+    if args.sequential_backward and (args.calibrate_from or args.profile or args.time_phases):
+        parser.error('Sequential backward uses explicit policies and interleaves the forward and backward phases')
     torch.set_num_threads(8)
     local_rank = int(os.environ.get('LOCAL_RANK', 0))
     rank, world = int(os.environ.get('RANK', 0)), int(os.environ.get('WORLD_SIZE', 1))
+    if args.check_role_schedules:
+        if world != 1 or any((args.sequential_backward, args.calibrate_from, args.profile, args.time_phases,
+                              args.map_retries, args.allocator_events, args.trace_events)):
+            parser.error('--check-role-schedules compares both schedules in a single rank with explicit policies')
+        torch.use_deterministic_algorithms(True)
     device_utils.set_device(local_rank)
     torch.manual_seed(SEED)
     os.environ.update(RANK=str(rank), WORLD_SIZE=str(world), LOCAL_RANK=str(local_rank))
@@ -121,12 +131,13 @@ def main() -> None:
                                                                role_policy,
                                                                checkpoint_every=args.checkpoint_every,
                                                                save_count=save_count)
+    method_type = 'SequentialDMD2Method' if args.sequential_backward else 'DMD2Method'
     cfg = RunConfig(models=roles,
                     training=config,
                     callbacks={},
                     raw={},
                     method={
-                        '_target_': 'fastvideo.train.methods.distribution_matching.dmd2.DMD2Method',
+                        '_target_': f'fastvideo.train.methods.distribution_matching.dmd2.{method_type}',
                         'rollout_mode': 'data_latent',
                         'generator_update_interval': 1,
                         'real_score_guidance_scale': 5.0,
@@ -145,6 +156,14 @@ def main() -> None:
         getattr(method, role).transformer.train()
     method.teacher.transformer.eval()
     stream = itertools.cycle(dataloader)
+    if args.check_role_schedules:
+        from check_role_schedule import check_schedules
+        result = check_schedules(method, next(stream))
+        Path(args.output).write_text(json.dumps(result, indent=2) + '\n')
+        cleanup_dist_env_and_memory()
+        if not result['exact']:
+            raise RuntimeError('The two updates differed; see the comparison JSON')
+        return
     iteration = 0
 
     def step(observe: Callable[[str], None] | None = None) -> dict[str, Any]:
@@ -160,9 +179,12 @@ def main() -> None:
                 timings[name] = time.perf_counter()
 
         mark('start')
-        losses, outputs, metrics = method.single_train_step(next(stream), iteration)
-        mark('train')
-        method.backward(losses, outputs)
+        if args.time_phases:
+            losses, outputs, metrics = method.single_train_step(next(stream), iteration)
+            mark('train')
+            method.backward(losses, outputs)
+        else:
+            losses, outputs, metrics = method.train_microbatch(next(stream), iteration)
         mark('backward')
         if observe is not None:
             observe('clipping')
@@ -264,6 +286,7 @@ def main() -> None:
         'autocast_dtype': 'bfloat16',
         'torch': torch.__version__,
         **device_utils.runtime_metadata(),
+        'role_schedule': method_type,
         'allocator_config': device_utils.allocator_config(),
         'peak_allocated_bytes': max(record['peak_allocated_bytes'] for record in records)
     }

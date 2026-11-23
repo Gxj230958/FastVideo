@@ -164,6 +164,17 @@ class TrainingMethod(torch.nn.Module, ABC):
         grad_accum_rounds = max(1, int(grad_accum_rounds))
         (loss_map["total_loss"] / grad_accum_rounds).backward()
 
+    def train_microbatch(
+            self,
+            batch: dict[str, Any],
+            iteration: int,
+            *,
+            grad_accum_rounds: int = 1) -> tuple[dict[str, torch.Tensor], dict[str, Any], dict[str, LogScalar]]:
+        """Compute losses and accumulate gradients for one microbatch."""
+        losses, outputs, metrics = self.single_train_step(batch, iteration)
+        self.backward(losses, outputs, grad_accum_rounds=grad_accum_rounds)
+        return losses, outputs, metrics
+
     def optimizers_schedulers_step(
         self,
         iteration: int,
