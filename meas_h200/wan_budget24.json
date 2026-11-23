@@ -1,0 +1,111 @@
+{
+  "executor": "FastVideo WanModel / FSDP2",
+  "exported_model": null,
+  "model": "/inspire/hdd/global_user/s26045/fastvideo/weights/Wan2.1-T2V-1.3B-Diffusers",
+  "training_sample": "/inspire/hdd/global_user/s26045/fastvideo/meas/robot.pt",
+  "measurements": [
+    {
+      "step_ms": 553.8272862322628,
+      "loss": 0.08151419460773468,
+      "peak_allocated_bytes": 25279805952,
+      "peak_reserved_bytes": 32057065472
+    },
+    {
+      "step_ms": 560.507127083838,
+      "loss": 0.07460227608680725,
+      "peak_allocated_bytes": 25279805952,
+      "peak_reserved_bytes": 32057065472
+    },
+    {
+      "step_ms": 553.6642000079155,
+      "loss": 0.06855789572000504,
+      "peak_allocated_bytes": 25279805952,
+      "peak_reserved_bytes": 32057065472
+    },
+    {
+      "step_ms": 557.0591492578387,
+      "loss": 0.06339464336633682,
+      "peak_allocated_bytes": 25279805952,
+      "peak_reserved_bytes": 32057065472
+    },
+    {
+      "step_ms": 550.6191961467266,
+      "loss": 0.05888616666197777,
+      "peak_allocated_bytes": 25279805952,
+      "peak_reserved_bytes": 32057065472
+    }
+  ],
+  "rank_measurements": [
+    [
+      {
+        "step_ms": 553.8272862322628,
+        "loss": 0.08151419460773468,
+        "peak_allocated_bytes": 25279805952,
+        "peak_reserved_bytes": 32057065472
+      },
+      {
+        "step_ms": 560.507127083838,
+        "loss": 0.07460227608680725,
+        "peak_allocated_bytes": 25279805952,
+        "peak_reserved_bytes": 32057065472
+      },
+      {
+        "step_ms": 553.6642000079155,
+        "loss": 0.06855789572000504,
+        "peak_allocated_bytes": 25279805952,
+        "peak_reserved_bytes": 32057065472
+      },
+      {
+        "step_ms": 557.0591492578387,
+        "loss": 0.06339464336633682,
+        "peak_allocated_bytes": 25279805952,
+        "peak_reserved_bytes": 32057065472
+      },
+      {
+        "step_ms": 550.6191961467266,
+        "loss": 0.05888616666197777,
+        "peak_allocated_bytes": 25279805952,
+        "peak_reserved_bytes": 32057065472
+      }
+    ]
+  ],
+  "world_size": 1,
+  "batch_per_rank": 1,
+  "policies": {
+    "blocks.0": "save",
+    "blocks.1": "save",
+    "blocks.2": "save",
+    "blocks.3": "recompute",
+    "blocks.4": "save",
+    "blocks.5": "save",
+    "blocks.6": "save",
+    "blocks.7": "save",
+    "blocks.8": "save",
+    "blocks.9": "recompute",
+    "blocks.10": "save",
+    "blocks.11": "save",
+    "blocks.12": "save",
+    "blocks.13": "save",
+    "blocks.14": "save",
+    "blocks.15": "recompute",
+    "blocks.16": "save",
+    "blocks.17": "save",
+    "blocks.18": "save",
+    "blocks.19": "recompute",
+    "blocks.20": "save",
+    "blocks.21": "save",
+    "blocks.22": "save",
+    "blocks.23": "save",
+    "blocks.24": "save",
+    "blocks.25": "save",
+    "blocks.26": "save",
+    "blocks.27": "recompute",
+    "blocks.28": "save",
+    "blocks.29": "save"
+  },
+  "planning_ms": 25.16308007761836,
+  "warmup_steps": 5,
+  "torch": "2.9.1+cu128",
+  "device_type": "cuda",
+  "cuda_version": "12.8"
+}
